@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<!-- saved from url=(0027)https://robwierzbowski.com/ -->
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- TODO: Double check these metas; do I need anything else? -->
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="msapplication-tap-highlight" content="no" />
+
+    <!-- TODO: Find a more aesthetic favicon, add a png fallback -->
+    <link rel="icon" href="https://robwierzbowski.com/assets/favicon.svg" />
+
+    <title>Rob Wierzbowski</title>
+    <meta
+      name="description"
+      content="Rob Wierzbowski | Web Application and Front-End Platform Engineer in Pittsburgh, PA"
+    />
+
+    <style type="text/css">
+      /*
+      Color Key:
+      off-black: hsl(0, 0%, 14%)
+      desaturated pink: hsl(347, 83%, 80%)
+      desaturated purple: hsl(326, 36%, 65%)
+      TODO: try this pink too, I liked it at some point: hsl(347, 83%, 70%)
+    */
+
+      /* Font definitions */
+
+      /* TODO: Preload supported file in HEAD or inline and remove FOUT entirely? */
+      @font-face {
+        font-family: "Charter BT";
+        src: url("/assets/charter-bt-roman.mv1-subset.woff2") format("woff2");
+        font-display: swap;
+        font-style: normal;
+        font-weight: normal;
+      }
+
+      @font-face {
+        font-family: "Charter BT";
+        src: url("/assets/charter-bt-italic.mv1-subset.woff2") format("woff2");
+        font-display: swap;
+        font-style: italic;
+        font-weight: normal;
+      }
+
+      /* Global element reset and normalization styles */
+
+      body {
+        margin: 0;
+      }
+
+      svg {
+        vertical-align: middle;
+      }
+
+      /*
+      Reset text elements for easy semantic use. Only reset elements used on
+      this page.
+      https://web.archive.org/web/20160422140410/http://anthonyshort.me/global-typographic-styles-suck/
+    */
+
+      ul,
+      li {
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        display: block;
+        list-style: none;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      a {
+        color: inherit;
+        font-weight: inherit;
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:active,
+      a:focus,
+      a:visited {
+        outline: none;
+        text-decoration: none;
+      }
+
+      /* App specific styles */
+
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+
+      /* All interactive elements must have custom focus styles */
+      :focus {
+        outline: none;
+      }
+
+      ::selection {
+        color: white;
+        text-shadow: none;
+        background-color: hsl(326, 36%, 65%);
+      }
+
+      :root {
+        color: hsl(0, 0%, 14%);
+        font-family: "Charter BT", "Times New Roman", serif;
+        font-synthesis: none; /* disable faux font variants */
+        line-height: 1.45;
+        background-color: white;
+        font-size: 112.5%;
+      }
+
+      @media (min-width: 370px) {
+        :root {
+          font-size: 125%;
+        }
+      }
+
+      .main {
+        max-width: 35rem;
+        padding: 2.25rem 1.5rem 5rem;
+      }
+
+      @media (min-width: 560px) {
+        .main {
+          padding-bottom: 3.5rem;
+        }
+      }
+
+      .title {
+        margin-bottom: 1.25rem;
+        font-size: 1.75rem;
+        line-height: 1.2;
+      }
+
+      @media (min-width: 370px) {
+        .title {
+          font-size: 1.85rem;
+        }
+      }
+
+      .content {
+        margin-bottom: 2.5rem;
+      }
+
+      /*
+      `content` is a markdown-like text container. Use it to scope and style
+      markdown-like elements with descendent selectors.
+    */
+      .content p {
+        margin-bottom: 1rem;
+      }
+
+      /*
+      When browser support for text-decoration skip-ink, thickness, and offset
+      improves, use them instead of this clever CSS.
+
+      I'd normally use a mixin or component to apply the same styles to
+      link-text and keep the selectors grouped logically, but this is pure
+      vanilla.
+    */
+      .content a,
+      .link-text {
+        text-shadow: 0.06em 0.06em white, 0.06em -0.06em white,
+          -0.06em -0.06em white, -0.06em 0.06em white, 0.09em 0.09em white,
+          0.09em -0.09em white, -0.09em -0.09em white, -0.09em 0.09em white;
+
+        background-image: linear-gradient(hsl(0, 0%, 14%), hsl(0, 0%, 14%));
+        background-position: 0 0.9em;
+        background-repeat: repeat-x;
+        background-size: 5px 1.5px;
+      }
+
+      .content a:hover,
+      .content a:focus,
+      .link:hover .link-text,
+      .link:focus .link-text {
+        background-image: linear-gradient(
+          hsl(347, 83%, 80%),
+          hsl(347, 83%, 80%)
+        );
+      }
+
+      .svg-defs {
+        display: none;
+      }
+
+      .links {
+        list-style-type: none;
+      }
+
+      .link-icon {
+        display: inline-block;
+        margin-right: 0.5rem;
+        height: 18px;
+        width: 18px;
+      }
+
+      .link:hover .link-icon,
+      .link:focus .link-icon {
+        fill: hsl(347, 83%, 80%);
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="main">
+      <h1 class="title">Rob Wierzbowski</h1>
+
+      <article class="content">
+        <p>Pleased to meet you.</p>
+
+        <p>
+          I’m an engineering leader focusing on problems at the organizational
+          level. Whether defining architecture, building tools, or guiding the
+          way teams collaborate and deliver, my work is centered on moving the
+          wider organization forward. With a decade of engineering leadership
+          experience, I identify and action on cross-cutting issues with a
+          comfort and practicality that’s valued by the teams I work with.
+        </p>
+
+        <p>
+          I’m currently a principal engineer on the Core Front-end Platform team
+          at <a href="https://www.stitchfix.com/">Stitch Fix</a>. IRL, you'll
+          find me loving the sun, coffee, and hospitality in beautiful Austin,
+          TX.
+        </p>
+      </article>
+
+      <footer>
+        <svg
+          class="svg-defs"
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+          stroke-linejoin="round"
+          stroke-miterlimit="1.414"
+          viewBox="0 0 18 18"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <path
+              id="svg-mail"
+              d="M0 3.429V14.57h18V3.43H0zm1.714 9.428V6.115l13.324 6.742H1.714zm14.572-.9l-5.467-2.921 5.467-2.921v5.841zM9.504 8.063L3.756 5.143h11.31L9.504 8.064z"
+            >
+              <title>Email:</title>
+            </path>
+
+            <path
+              id="svg-github"
+              d="M8.999.222a9 9 0 00-2.845 17.537c.45.083.614-.195.614-.432 0-.215-.008-.924-.012-1.676-2.262.413-2.842-.554-3.032-1.06-.097-.261-.534-1.06-.92-1.27-.317-.174-.76-.585-.017-.594.711-.008 1.22.656 1.38.927.807 1.367 2.107.978 2.618.747.082-.58.315-.977.572-1.201-1.998-.228-4.1-1-4.1-4.448 0-.983.352-1.785.926-2.415-.092-.229-.401-1.144.09-2.383 0 0 .754-.241 2.474.923.717-.2 1.487-.3 2.252-.303a8.585 8.585 0 012.253.304c1.717-1.166 2.473-.923 2.473-.923.492 1.24.182 2.154.09 2.382.576.63.925 1.432.925 2.415 0 3.457-2.105 4.218-4.11 4.441.324.279.61.826.61 1.665 0 1.203-.011 2.173-.011 2.47 0 .24.163.52.62.431A9 9 0 008.998.222z"
+            >
+              <title>Github:</title>
+            </path>
+
+            <path
+              id="svg-twitter"
+              d="M15.89 4.013c.808-.496 1.343-1.173 1.605-2.034a8.679 8.679 0 01-2.35.86c-.704-.755-1.594-1.14-2.66-1.14-1.044 0-1.925.367-2.644 1.079a3.56 3.56 0 00-1.075 2.605c0 .309.039.585.117.819C5.807 6.097 3.26 4.82 1.255 2.365c-.34.6-.51 1.213-.51 1.846 0 1.3.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 002.115 1.29c-.312.08-.641.118-.98.118-.311 0-.532-.026-.663-.083.23.757.664 1.371 1.29 1.841a3.652 3.652 0 002.153.743C4.148 14.172 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.65 5.676 1.65 2.139 0 4.028-.543 5.673-1.627 1.645-1.078 2.86-2.408 3.64-3.974A10.77 10.77 0 0016.16 5.81V5.34A7.788 7.788 0 0018 3.42a8.142 8.142 0 01-2.11.593z"
+            >
+              <title>Twitter:</title>
+            </path>
+          </defs>
+        </svg>
+
+        <ul class="links">
+          <li>
+            <a class="link" href="mailto:rob.wierzbowski@gmail.com">
+              <svg class="link-icon">
+                <use href="#svg-mail" x="0" y="0"></use>
+              </svg>
+              <span class="link-text">rob.wierzbowski@gmail.com</span>
+            </a>
+          </li>
+
+          <li>
+            <a class="link" href="https://github.com/robwierzbowski">
+              <svg class="link-icon">
+                <use href="#svg-github" x="0" y="0"></use>
+              </svg>
+              <span class="link-text">robwierzbowski</span>
+            </a>
+          </li>
+        </ul>
+      </footer>
+    </main>
+  </body>
+</html>
