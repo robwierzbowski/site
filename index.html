@@ -18,35 +18,41 @@
     />
 
     <style type="text/css">
-      /*
-        TODO: switch to custom properties
-        Color Key:
-        off-black: hsl(0, 0%, 14%)
-        desaturated pink: hsl(347, 83%, 80%)
-        desaturated purple: hsl(326, 36%, 65%)
-        TODO: try this pink too, I liked it at some point: hsl(347, 83%, 70%)
-      */
-
       /* Font definitions */
 
       /* TODO: Preload supported file in HEAD to remove FOUT entirely */
       @font-face {
-        font-family: "Charter BT";
-        src: url("/charter-bt-roman.mv1-subset.woff2") format("woff2");
         font-display: swap;
+        font-family: "Charter BT";
         font-style: normal;
         font-weight: normal;
+        src: url("/charter-bt-roman.mv1-subset.woff2") format("woff2");
       }
 
       @font-face {
-        font-family: "Charter BT";
-        src: url("/charter-bt-italic.mv1-subset.woff2") format("woff2");
         font-display: swap;
+        font-family: "Charter BT";
         font-style: italic;
         font-weight: normal;
+        src: url("/charter-bt-italic.mv1-subset.woff2") format("woff2");
       }
 
-      /* Global element reset and normalization styles */
+      /*
+        - - - - - - - - - - - - - - - - - - - - - - -
+        Global element reset and normalization styles
+        - - - - - - - - - - - - - - - - - - - - - - -
+      */
+
+      /* Use aesthetic fallback hover styles for focus when pointer is used */
+      :focus-visible {
+        outline: none;
+      }
+
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
 
       body {
         margin: 0;
@@ -92,43 +98,47 @@
 
       a:hover,
       a:active,
-      a:focus,
+      a:focus-visible,
       a:visited {
         outline: none;
         text-decoration: none;
       }
 
-      /* App specific styles */
+      /*
+        - - - - - - - - - - -
+        Site specific styles
+        - - - - - - - - - - -
+      */
 
-      *,
-      ::before,
-      ::after {
-        box-sizing: border-box;
-      }
+      :root {
+        /* Color variables */
+        --off-black: hsl(0, 0%, 14%);
+        --light-pink: hsl(347deg 100% 91%);
+        --desaturated-pink: hsl(347, 83%, 80%);
+        --desaturated-purple: hsl(326, 36%, 65%);
 
-      /* Use aesthetic fallback hover styles for focus when pointer is used */
-      :focus-visible {
-        outline: none;
+        /*
+          TODO: Try this out, I had saved it as an option at some point
+          --alt-pink: hsl(347, 83%, 70%);
+        */
+
+        color: var(--off-black);
+        font-family: "Charter BT", "Times New Roman", serif;
+        font-size: 1.1875rem;
+        font-synthesis: none;
+        line-height: 1.45;
+        background-color: white;
       }
 
       ::selection {
         color: white;
         text-shadow: none;
-        background-color: hsl(326, 36%, 65%);
-      }
-
-      :root {
-        color: hsl(0, 0%, 14%);
-        font-family: "Charter BT", "Times New Roman", serif;
-        font-synthesis: none; /* disable faux font variants */
-        line-height: 1.45;
-        background-color: white;
-        font-size: 125%;
+        background-color: var(--desaturated-purple);
       }
 
       .main {
-        max-width: 35rem;
         padding: 2.25rem 1.5rem 5rem;
+        max-width: 37rem;
       }
 
       @media (min-width: 560px) {
@@ -144,7 +154,7 @@
       }
 
       .content {
-        margin-bottom: 2.5rem;
+        margin-bottom: 2.25rem;
       }
 
       /*
@@ -153,6 +163,17 @@
       */
       .content p {
         margin-bottom: 1rem;
+      }
+
+      .callout {
+        border: var(--light-pink) solid;
+        border-width: 0.2rem 0.3rem 0.17rem;
+
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+
+        color: hsl(0, 0%, 6%);
+        background: var(--light-pink);
       }
 
       /*
@@ -170,7 +191,7 @@
           -0.06em -0.06em white, -0.06em 0.06em white, 0.09em 0.09em white,
           0.09em -0.09em white, -0.09em -0.09em white, -0.09em 0.09em white;
 
-        background-image: linear-gradient(hsl(0, 0%, 14%), hsl(0, 0%, 14%));
+        background-image: linear-gradient(var(--off-black), var(--off-black));
         background-position: 0 0.9em;
         background-repeat: repeat-x;
         background-size: 5px 1.5px;
@@ -181,8 +202,8 @@
       .link:hover .link-text,
       .link:focus .link-text {
         background-image: linear-gradient(
-          hsl(347, 83%, 80%),
-          hsl(347, 83%, 80%)
+          var(--desaturated-pink),
+          var(--desaturated-pink)
         );
       }
 
@@ -197,39 +218,55 @@
       .link-icon {
         display: inline-block;
         margin-right: 0.5rem;
-        height: 18px;
-        width: 18px;
+        height: 1.25rem;
+        width: 1.25rem;
       }
 
       .link:hover .link-icon,
       .link:focus .link-icon {
-        fill: hsl(347, 83%, 80%);
+        fill: var(--desaturated-pink);
       }
     </style>
   </head>
 
   <body>
     <main class="main">
-      <h1 class="title">Rob Wierzbowski</h1>
+      <h1 class="title">Pleased to meet you.</h1>
 
       <article class="content">
         <!-- TODO: Edit and update! Lookin for work now babes -->
-        <p>Pleased to meet you.</p>
-
         <p>
-          I’m an engineering leader focusing on problems at the organizational
-          level. Whether defining architecture, building tools, or guiding the
-          way teams collaborate and deliver, my work is centered on moving the
-          wider organization forward. With a decade of engineering leadership
-          experience, I identify and action on cross-cutting issues with a
-          comfort and practicality that’s valued by the teams I work with.
+          My name is <strong>Rob Wierzbowski</strong>. I'm an engineer with over
+          fifteen years of experience in frontend technologies and a decade in
+          engineering leadership.
         </p>
 
         <p>
-          I’m currently a principal engineer on the Core Front-end Platform team
-          at <a href="https://www.stitchfix.com/">Stitch Fix</a>. IRL, you'll
-          find me loving the sun, coffee, and hospitality in beautiful Austin,
-          TX.
+          <strong class="callout"
+            >I'm currently seeking a Principal or Staff position at a company
+            that's maturing their frontend platform.</strong
+          >
+        </p>
+
+        <p>
+          I use technical and organizational work to solve wide-reaching
+          problems and create happiness and efficiency in the teams I support.
+          Frontend platform and internal tools are where I shine, although I
+          love any frontend initiative that requires systems thinking.
+        </p>
+
+        <p>
+          People that work with me appreciate my drive to fully understand and
+          communicate a problem space, the way I handle projects comfortably and
+          without ego, and my dedication to dissolving complexity with simple,
+          practical solutions.
+        </p>
+
+        <p>
+          You can learn more about my experience on
+          <a href="https://www.linkedin.com/in/robertwierzbowski/">Linkedin</a>.
+          IRL, you'll find me loving the sun, coffee, and hospitality in
+          beautiful Austin, TX.
         </p>
       </article>
 
@@ -249,21 +286,14 @@
               id="svg-mail"
               d="M0 3.429V14.57h18V3.43H0zm1.714 9.428V6.115l13.324 6.742H1.714zm14.572-.9l-5.467-2.921 5.467-2.921v5.841zM9.504 8.063L3.756 5.143h11.31L9.504 8.064z"
             >
-              <title>Email:</title>
+              <title>Email</title>
             </path>
 
             <path
               id="svg-github"
               d="M8.999.222a9 9 0 00-2.845 17.537c.45.083.614-.195.614-.432 0-.215-.008-.924-.012-1.676-2.262.413-2.842-.554-3.032-1.06-.097-.261-.534-1.06-.92-1.27-.317-.174-.76-.585-.017-.594.711-.008 1.22.656 1.38.927.807 1.367 2.107.978 2.618.747.082-.58.315-.977.572-1.201-1.998-.228-4.1-1-4.1-4.448 0-.983.352-1.785.926-2.415-.092-.229-.401-1.144.09-2.383 0 0 .754-.241 2.474.923.717-.2 1.487-.3 2.252-.303a8.585 8.585 0 012.253.304c1.717-1.166 2.473-.923 2.473-.923.492 1.24.182 2.154.09 2.382.576.63.925 1.432.925 2.415 0 3.457-2.105 4.218-4.11 4.441.324.279.61.826.61 1.665 0 1.203-.011 2.173-.011 2.47 0 .24.163.52.62.431A9 9 0 008.998.222z"
             >
-              <title>Github:</title>
-            </path>
-
-            <path
-              id="svg-twitter"
-              d="M15.89 4.013c.808-.496 1.343-1.173 1.605-2.034a8.679 8.679 0 01-2.35.86c-.704-.755-1.594-1.14-2.66-1.14-1.044 0-1.925.367-2.644 1.079a3.56 3.56 0 00-1.075 2.605c0 .309.039.585.117.819C5.807 6.097 3.26 4.82 1.255 2.365c-.34.6-.51 1.213-.51 1.846 0 1.3.549 2.332 1.645 3.089-.625-.053-1.176-.211-1.645-.47 0 .929.273 1.705.82 2.388a3.623 3.623 0 002.115 1.29c-.312.08-.641.118-.98.118-.311 0-.532-.026-.663-.083.23.757.664 1.371 1.29 1.841a3.652 3.652 0 002.153.743C4.148 14.172 2.625 14.69.902 14.69c-.422 0-.721-.006-.902-.038 1.697 1.102 3.586 1.65 5.676 1.65 2.139 0 4.028-.543 5.673-1.627 1.645-1.078 2.86-2.408 3.64-3.974A10.77 10.77 0 0016.16 5.81V5.34A7.788 7.788 0 0018 3.42a8.142 8.142 0 01-2.11.593z"
-            >
-              <title>Twitter:</title>
+              <title>Github</title>
             </path>
           </defs>
         </svg>
