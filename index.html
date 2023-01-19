@@ -65,7 +65,6 @@
       /*
         Reset text elements for easy semantic use. Only reset elements used on
         this page.
-        https://web.archive.org/web/20160422140410/http://anthonyshort.me/global-typographic-styles-suck/
       */
 
       ul,
@@ -111,7 +110,7 @@
       */
 
       :root {
-        /* Color variables */
+        /* Colors */
         --off-black: hsl(0, 0%, 14%);
         --light-pink: hsl(347deg 100% 91%);
         --desaturated-pink: hsl(347, 83%, 80%);
@@ -158,8 +157,9 @@
       }
 
       /*
-        `content` is a markdown-like text container. Use it to scope and style
-        markdown-like elements with descendent selectors.
+        `content` is a markdown-like text container that uses descendent
+        selectors. In a real system we'd be using classes, but in this tiny page
+        with tiny scope element styles make it easy to write and markup content.
       */
       .content p {
         margin-bottom: 1rem;
@@ -297,7 +297,7 @@
           </defs>
         </svg>
 
-        <!-- TODO: Add linkdin here -->
+        <!-- TODO: Add linkedin here -->
         <ul class="links">
           <li>
             <a class="link" href="mailto:rob.wierzbowski@gmail.com">
