@@ -112,9 +112,9 @@
       :root {
         /* Colors */
         --off-black: hsl(0, 0%, 14%);
-        --light-pink: hsl(347deg 100% 91%);
-        --desaturated-pink: hsl(347, 83%, 80%);
-        --desaturated-purple: hsl(326, 36%, 65%);
+        --pink-desaturated: hsl(347, 83%, 80%);
+        --pink-saturated: hsl(336deg 100% 70%);
+        --purple-desaturated: hsl(326, 36%, 65%);
 
         /*
           TODO: Try this out, I had saved it as an option at some point
@@ -132,7 +132,7 @@
       ::selection {
         color: white;
         text-shadow: none;
-        background-color: var(--desaturated-purple);
+        background-color: var(--purple-desaturated);
       }
 
       .main {
@@ -166,14 +166,14 @@
       }
 
       .callout {
-        border: var(--light-pink) solid;
+        border: var(--pink-saturated) solid;
         border-width: 0.2rem 0.3rem 0.17rem;
 
         box-decoration-break: clone;
         -webkit-box-decoration-break: clone;
 
-        color: hsl(0, 0%, 6%);
-        background: var(--light-pink);
+        color: white;
+        background: var(--pink-saturated);
       }
 
       /*
@@ -202,8 +202,8 @@
       .link:hover .link-text,
       .link:focus .link-text {
         background-image: linear-gradient(
-          var(--desaturated-pink),
-          var(--desaturated-pink)
+          var(--pink-desaturated),
+          var(--pink-desaturated)
         );
       }
 
@@ -224,7 +224,7 @@
 
       .link:hover .link-icon,
       .link:focus .link-icon {
-        fill: var(--desaturated-pink);
+        fill: var(--pink-desaturated);
       }
     </style>
   </head>
