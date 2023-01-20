@@ -19,8 +19,9 @@
     <link rel="icon" href="/favicon.svg" />
 
     <!--
-      Preload font in HEAD to remove FOUT entirely. This increases TTFP but only
-      slightly, and results in more calming overall experience
+      Preload font in HEAD and set font-display to block to remove FOUT
+      entirely. This increases TTFP but only slightly, but results in a more
+      calming experience
     -->
     <link rel="preload" as="font" href="/charter-bt-roman.mv1-subset.woff2" />
 
@@ -38,7 +39,7 @@
       */
 
       @font-face {
-        font-display: swap;
+        font-display: block;
         font-family: "Charter BT";
         font-style: normal;
         font-weight: normal;
