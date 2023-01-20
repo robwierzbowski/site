@@ -6,3 +6,4 @@
 #   package = "@netlify/plugin-lighthouse"
 
 # [[headers]]
+#   TODO: change fonts to far future expiry and manage cache busting manually
