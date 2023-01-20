@@ -15,8 +15,8 @@
     s-maxage=31536000,
     immutable'''
 
-# Turn off assets processing to support preloading fonts with a link tag.
-# Netlify doesn't rewrite link tags to match their hashed asset name, or allow
+# Turn off asset processing to support preloading fonts with a link tag. Netlify
+# doesn't rewrite link tags to match their hashed asset name, or allow
 # fine-grained exclusion of fonts from processing.
 # https://answers.netlify.com/t/asset-optimization-preloading-fonts/3197/10
 [build.processing]
