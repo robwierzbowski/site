@@ -1,3 +1,13 @@
+<!--
+  You might notice this file isn't minimized. In fact, it's not processed in any
+  way. I started coding in the latter half of the 90s when view source was an
+  exciting way to dive into the thought process of fellow web "designers" across
+  the world, people you'd never heard of but who had built something that made
+  you stop and say "how!?". JavaScript and build processes have done amazing
+  things for the web in the last 25 years, but on my site and my time I'm
+  recapturing a little of that wonder, with code and comments typed directly
+  into an HTML file for all to see.
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -5,8 +15,14 @@
     <link rel="icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- TODO: Find a more aesthetic favicon, add a png fallback -->
+    <!-- TODO: Find a more aesthetic favicon, add png fallback -->
     <link rel="icon" href="/favicon.svg" />
+
+    <!--
+      Preload font in HEAD to remove FOUT entirely. This decreases TTFP but only
+      slightly, and results in more calming overall experience
+    -->
+    <link rel="preload" as="font" href="/charter-bt-roman.mv1-subset.woff2" />
 
     <title>Rob Wierzbowski</title>
     <meta
@@ -15,9 +31,12 @@
     />
 
     <style type="text/css">
-      /* Font definitions */
+      /*
+        - - - - - - - -
+        Font definitions
+        - - - - - - - -
+      */
 
-      /* TODO: Preload supported file in HEAD to remove FOUT entirely */
       @font-face {
         font-display: swap;
         font-family: "Charter BT";
@@ -26,6 +45,10 @@
         src: url("/charter-bt-roman.mv1-subset.woff2") format("woff2");
       }
 
+      /*
+        TODO: I'm not using this right now. If I don't find an occasion soon,
+        remove.
+      */
       @font-face {
         font-display: swap;
         font-family: "Charter BT";
@@ -35,12 +58,12 @@
       }
 
       /*
-        - - - - - - - - - - - - - - - - - - - - - - -
-        Global element reset and normalization styles
-        - - - - - - - - - - - - - - - - - - - - - - -
+        - - - - - - - - - - - - - - - - - - - -
+        Global element reset and normalization
+        - - - - - - - - - - - - - - - - - - - -
       */
 
-      /* Use aesthetic fallback hover styles for focus when pointer is used */
+      /* Use aesthetic hover styles for focus when a pointer is in use */
       :focus-visible {
         outline: none;
       }
@@ -102,7 +125,7 @@
 
       /*
         - - - - - - - - - - -
-        Site specific styles
+        Site-specific styles
         - - - - - - - - - - -
       */
 
@@ -114,8 +137,8 @@
         --purple-desaturated: hsl(326, 36%, 65%);
 
         /*
-          TODO: Try this out, I had saved it as an option at some point
-          --alt-pink: hsl(347, 83%, 70%);
+          TODO: Try this out. I had saved it as an option at some point
+          --pink-alt: hsl(347, 83%, 70%);
         */
 
         color: var(--off-black);
