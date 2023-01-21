@@ -1,9 +1,12 @@
 [build]
   publish = "src/"
 
-# [[plugins]]
-#   # Installs the Lighthouse Build Plugin for all deploy contexts
-#   package = "@netlify/plugin-lighthouse"
+# Turn off asset processing to support preloading fonts with a link tag. Netlify
+# doesn't rewrite link tags to match their hashed asset name, or allow
+# fine-grained exclusion of fonts from processing.
+# https://answers.netlify.com/t/asset-optimization-preloading-fonts/3197/10
+[build.processing]
+  skip_processing = true
 
 [[headers]]
   # Set fonts to far future expiry, managing cache busting manually
@@ -15,9 +18,6 @@
     s-maxage=31536000,
     immutable'''
 
-# Turn off asset processing to support preloading fonts with a link tag. Netlify
-# doesn't rewrite link tags to match their hashed asset name, or allow
-# fine-grained exclusion of fonts from processing.
-# https://answers.netlify.com/t/asset-optimization-preloading-fonts/3197/10
-[build.processing]
-  skip_processing = true
+# [[plugins]]
+#   # Installs the Lighthouse Build Plugin for all deploy contexts
+#   package = "@netlify/plugin-lighthouse"

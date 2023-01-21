@@ -179,22 +179,12 @@
 
       /*
         `content` is a markdown-like text container that uses descendent
-        selectors. In a real system we'd be using classes, but in this tiny page
-        with tiny scope element styles make it easy to write and markup content.
+        selectors. In a larger system we'd be using classes or components to add
+        styles to each element. But in this tiny page we'll use scoped element
+        styles to make it easy to write content with markup by hand.
       */
       .content p {
         margin-bottom: 1rem;
-      }
-
-      .callout {
-        border: var(--pink-saturated) solid;
-        border-width: 0.2rem 0.3rem 0.17rem;
-
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-
-        color: white;
-        background: var(--pink-saturated);
       }
 
       /*
@@ -226,6 +216,17 @@
           var(--pink-desaturated),
           var(--pink-desaturated)
         );
+      }
+
+      .callout {
+        border: var(--pink-saturated) solid;
+        border-width: 0.2rem 0.3rem 0.17rem;
+
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+
+        color: white;
+        background: var(--pink-saturated);
       }
 
       .svg-defs {
