@@ -138,13 +138,7 @@
         /* Colors */
         --off-black: hsl(0, 0%, 14%);
         --pink-desaturated: hsl(347, 83%, 80%);
-        --pink-saturated: hsl(336deg 94% 64%);
-        --purple-desaturated: hsl(326, 36%, 65%);
-
-        /*
-          TODO: Try this out. I had saved it as an option at some point
-          --pink-alt: hsl(347, 83%, 70%);
-        */
+        --pink-saturated: hsl(336deg 87% 64%);
 
         color: var(--off-black);
         font-family: "Charter BT", "Times New Roman", serif;
@@ -157,7 +151,7 @@
       ::selection {
         color: white;
         text-shadow: none;
-        background-color: var(--purple-desaturated);
+        background-color: var(--pink-desaturated);
       }
 
       .main {
@@ -217,8 +211,8 @@
       .link:hover .link-text,
       .link:focus .link-text {
         background-image: linear-gradient(
-          var(--pink-desaturated),
-          var(--pink-desaturated)
+          var(--pink-saturated),
+          var(--pink-saturated)
         );
       }
 
@@ -250,7 +244,7 @@
 
       .link:hover .link-icon,
       .link:focus .link-icon {
-        fill: var(--pink-desaturated);
+        fill: var(--pink-saturated);
       }
     </style>
   </head>
