@@ -8,10 +8,20 @@
 [build.processing]
   skip_processing = true
 
+# Set selected assets to far future expiry to eek out a tiny bit more
+# performance, managing cache busting manually. This is a very minor
+# optimization, but I can't bring myself to make network roundtrips on every
+# page load for never-changing assets.
 [[headers]]
-  # Set fonts to far future expiry, managing cache busting manually
   for = "/*.woff2"
+  [headers.values]
+    cache-control = '''
+    max-age=31536000,
+    s-maxage=31536000,
+    immutable'''
 
+[[headers]]
+  for = "/favicon-64.png"
   [headers.values]
     cache-control = '''
     max-age=31536000,
