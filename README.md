@@ -5,7 +5,7 @@ A no compile, no transform microsite. Happily trading zero maintenance for some 
 ## Local development
 
 ```shell
-npx http-server . -o
+npx http-server src -o
 ```
 
 ## Testing in production
