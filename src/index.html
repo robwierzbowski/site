@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <!--
   You might notice this file isn't minimized. In fact, it's not processed in any
-  way. I started coding in the latter half of the 90s when view source was an
-  exciting way to dive into the thought process of fellow web "designers" across
-  the world, people you'd never heard of but who had built something that made
-  you stop and say "how!?". JavaScript and build processes have done amazing
-  things for the web in the last 25 years, but on my site and my time I'm
-  recapturing a little of that wonder with no build process, no dependencies,
+  way. I started coding in the latter half of the 90s when viewing source was an
+  exciting way to dive into the thought process of your distant peers, people
+  across the world you'd never heard of but who had built something that made
+  you stop and asl "how!?". SPAs and build processes have done amazing things
+  for the web in the last 25 years, but on my site, and on my time, I'm
+  recapturing a little of that old wonder. No build process, no dependencies,
   and code and comments typed directly into an HTML file for all to see.
 -->
 <html lang="en">
@@ -14,13 +14,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- TODO: Replace placeholder favicon, use svg and png -->
+    <!--
+      TODO: Replace placeholder favicon with something more personal , use svg
+      and png
+    -->
     <link rel="icon" href="/favicon-64.png" />
 
     <!--
-      Preload primary font and set font-display to block to remove FOUT
-      entirely. This increases TTFP slightly, but results in a more calming
-      experience overall.
+      Preloading primary font and setting font-display to block to remove FOUT
+      entirely. This increases TTFP slightly, but results in less layout shift
+      and a more calming experience overall.
     -->
     <link
       rel="preload"
@@ -37,9 +40,9 @@
 
     <style type="text/css">
       /*
-        - - - - - - - -
-        Font definitions
-        - - - - - - - -
+        - - -
+        Fonts
+        - - -
       */
 
       @font-face {
@@ -66,6 +69,8 @@
         - - - - - - - - - - - - - - - - - - - -
         Global element reset and normalization
         - - - - - - - - - - - - - - - - - - - -
+        Shout out to Nicolas Gallagher and Anthony Short, who defined the patterns of
+        normalization and typographical resets back when CSS patterns were young
       */
 
       /* Use aesthetic hover styles for focus when a pointer is in use */
