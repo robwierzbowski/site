@@ -186,34 +186,24 @@
       }
 
       /*
-        TODO: Use skip-ink!
-        When browser support for text-decoration skip-ink, thickness, and offset
-        improves, use them instead of this clever CSS.
-
-        I'd normally use a mixin or component to apply the same styles to
-        link-text and keep the selectors grouped logically, but this is pure
-        vanilla.
+        Using the latest and greatest. Previously I was doing this with a text
+        shadow and background gradient, but now we can use skip-ink and text
+        decoration style properties!
       */
       .content a,
       .link-text {
-        text-shadow: 0.06em 0.06em white, 0.06em -0.06em white,
-          -0.06em -0.06em white, -0.06em 0.06em white, 0.09em 0.09em white,
-          0.09em -0.09em white, -0.09em -0.09em white, -0.09em 0.09em white;
-
-        background-image: linear-gradient(var(--off-black), var(--off-black));
-        background-position: 0 0.9em;
-        background-repeat: repeat-x;
-        background-size: 5px 1.5px;
+        text-decoration: underline;
+        text-decoration-line: underline;
+        text-decoration-skip-ink: auto;
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 2px;
       }
 
       .content a:hover,
       .content a:focus,
       .link:hover .link-text,
       .link:focus .link-text {
-        background-image: linear-gradient(
-          var(--pink-saturated),
-          var(--pink-saturated)
-        );
+        text-decoration-color: var(--pink-saturated);
       }
 
       .callout {
