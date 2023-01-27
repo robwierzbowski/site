@@ -129,7 +129,7 @@
 
       a:hover,
       a:active,
-      a:focus-visible,
+      a:focus,
       a:visited {
         outline: none;
         text-decoration: none;
@@ -207,10 +207,18 @@
       }
 
       .content a:hover,
-      .content a:focus,
       .link:hover .link-text,
+
+      /* Focus via a pointer click */
+      .content a:focus,
       .link:focus .link-text {
         text-decoration-color: var(--pink-saturated);
+      }
+
+      /* Focus via tabbing */
+      .content a:focus-visible,
+      .link:focus-visible .link-text {
+        color: var(--pink-saturated);
       }
 
       .callout {
