@@ -8,11 +8,6 @@
 [build.processing]
   skip_processing = true
 
-[[headers]]
-  for = "/hire.html"
-  [headers.values]
-    Basic-Auth = 'itsme:yaboi'
-
 # Set selected assets to far future expiry to eek out a tiny bit more
 # performance, at the cost of managing cache busting manually via file names.
 # This is a minor optimization, but I can't bring myself to make network
