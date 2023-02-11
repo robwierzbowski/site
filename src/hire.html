@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<!--
+  You might notice this file isn't minimized. In fact, it's not processed in any
+  way. I started coding in the latter half of the 90s when viewing source was an
+  exciting way to dive into the thought process of your distant peers, people
+  from across the world you'd never heard of but who had built something that
+  made you ask "how!?". Build processes and SPAs have done amazing things for
+  web usability and interactivity in the last 25 years, but on my site and my
+  time I'm recapturing a little of that old wonder. No build process, no
+  dependencies, just code and comments typed directly into an HTML file for
+  anyone that cares to look.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- TEMP: Don't index while in draft -->
+    <meta name="robots" content="noindex" />
+
+    <!--
+      TODO: Replace placeholder favicon with something more personal , use svg
+      and png
+    -->
+    <link rel="icon" href="/favicon-64.png" />
+
+    <!--
+      Preloading primary font and setting font-display to block to remove FOUT
+      entirely. This increases TTFP slightly, but results in less layout shift
+      and a more calming experience overall.
+    -->
+    <link
+      rel="preload"
+      as="font"
+      crossorigin
+      href="/charter-bt-roman.2022-02-09-subset.woff2"
+    />
+
+    <title>I'm your huckleberry</title>
+    <meta
+      name="description"
+      content="Principal/Staff frontend engineer open to new roles"
+    />
+
+    <style type="text/css">
+      /*
+        - - -
+        Fonts
+        - - -
+      */
+
+      @font-face {
+        font-display: block;
+        font-family: 'Charter BT';
+        font-style: normal;
+        font-weight: normal;
+        src: url('/charter-bt-roman.2022-02-09-subset.woff2') format('woff2');
+      }
+
+      /*
+        TODO: I'm not using this right now. If I don't find an occasion soon,
+        remove.
+      */
+      @font-face {
+        font-display: swap;
+        font-family: 'Charter BT';
+        font-style: italic;
+        font-weight: normal;
+        src: url('/charter-bt-italic.mv1-subset.woff2') format('woff2');
+      }
+
+      /*
+        - - - - - - - - - - - - - - - - - - - -
+        Global element reset and normalization
+        - - - - - - - - - - - - - - - - - - - -
+        Shout out to Nicolas Gallagher and Anthony Short, who defined the
+        patterns of normalization and typographical resets when the web was
+        young
+      */
+
+      /* Use aesthetic hover styles for focus when a pointer is in use */
+      :focus-visible {
+        outline: none;
+      }
+
+      *,
+      ::before,
+      ::after {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background: #80ded9;
+        background: #b3e6e4;
+      }
+
+      svg {
+        vertical-align: middle;
+      }
+
+      /*
+        Reset text elements for easy semantic use. Only reset elements used on
+        this page.
+      */
+
+      ul,
+      li {
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        display: block;
+        list-style: none;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: inherit;
+        font-weight: inherit;
+        line-height: inherit;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      a {
+        color: inherit;
+        font-weight: inherit;
+        text-decoration: none;
+      }
+
+      a:hover,
+      a:active,
+      a:focus,
+      a:visited {
+        outline: none;
+        text-decoration: none;
+      }
+
+      /*
+        - - - - - - - - - - -
+        Site-specific styles
+        - - - - - - - - - - -
+      */
+
+      :root {
+        /* Colors */
+        --off-black: hsl(0, 0%, 14%);
+        --pink-saturated: hsl(336deg 81% 64%);
+        --highlighter: hsl(67deg 100% 55% / 75%);
+
+        color: var(--off-black);
+        font-family: 'Charter BT', 'Times New Roman', serif;
+        font-size: 1.1875rem;
+        font-synthesis: none;
+        line-height: 1.45;
+        background-color: white;
+      }
+
+      ::selection {
+        color: black;
+        text-shadow: none;
+        background-color: var(--highlighter);
+      }
+
+      .main {
+        padding: 2.25rem 1.5rem 5rem;
+        /* max-width: 37rem; */
+        max-width: 44rem;
+      }
+
+      @media (min-width: 560px) {
+        .main {
+          padding-bottom: 3.5rem;
+        }
+      }
+
+      .title {
+        margin-bottom: 1.25rem;
+        font-size: 1.75rem;
+        line-height: 1.2;
+      }
+
+      .content {
+        margin-bottom: 2.25rem;
+      }
+
+      /*
+        `content` is a markdown-like text container that uses descendent
+        selectors. In a larger system we'd be using classes or components to add
+        styles to each element. But in this tiny page we'll use scoped element
+        styles to make it easy to write content with markup by hand.
+      */
+      .content p {
+        margin-bottom: 1rem;
+      }
+
+      /*
+        Using the latest and greatest! Previously I was coloring an "underline"
+        and separating it from descenders with a background gradient and text
+        shadow, but now we can use skip-ink and text decoration rules.
+      */
+      .content a,
+      .link-text {
+        text-decoration: underline;
+        text-decoration-line: underline;
+        text-decoration-skip-ink: auto;
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 2px;
+      }
+
+      .content a:hover,
+      .link:hover .link-text,
+
+      /* Focus via a pointer click */
+      .content a:focus,
+      .link:focus .link-text {
+        text-decoration-color: var(--pink-saturated);
+      }
+
+      /* Focus via tabbing */
+      .content a:focus-visible,
+      .link:focus-visible .link-text {
+        color: var(--pink-saturated);
+      }
+
+      .callout {
+        border: var(--pink-saturated) solid;
+        border-width: 0.2rem 0.3rem 0.17rem;
+
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+
+        color: white;
+        background: var(--pink-saturated);
+      }
+
+      .svg-defs {
+        display: none;
+      }
+
+      .links {
+        list-style-type: none;
+      }
+
+      .link-icon {
+        display: inline-block;
+        margin-right: 0.5rem;
+        height: 1rem;
+        width: 1.25rem;
+      }
+
+      .link:hover .link-icon,
+      .link:focus .link-icon {
+        fill: var(--pink-saturated);
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="main">
+      <h1 class="title">I'm your huckleberry.</h1>
+
+      <article class="content">
+        <p>
+          I'm currently looking for a new role. At this point in my career I
+          have a good understanding of the types of work where I can make the
+          most impact, what engages me, and the environment I thrive in. This
+          document will help you understand those parameters as well. If I match
+          a role you’re looking for, please reach out to me at
+          <a href="mailto:rob.wierzbowski@gmail.com"
+            >rob.wierzbowski@gmail.com</a
+          >.
+        </p>
+
+        <h3>What I'm looking for:</h3>
+
+        <p>
+          A Staff+ role responsible for defining and refining frontend
+          practices. Ideally on a frontend platform team, but I’m open to any
+          role responsible for solving broad problems in the frontend space.
+        </p>
+
+        <h3>Where:</h3>
+
+        <p>USA remote. I’m also open to partial remote in Austin, Texas.</p>
+
+        <h3>When:</h3>
+
+        <p>
+          Interviewing now. Ideally I’d like to take a couple weeks between hire
+          and start date to come into the role centered and rested.
+        </p>
+
+        <h3>What I bring:</h3>
+
+        <p>
+          I shine when taking the long view, building tools, and defining
+          patterns that fold a well considered tech strategy into the day to day
+          work of engineering teams. For all the details,
+          <a href="/Robert-Wierzbowski-2023-2-9.pdf">view my resume here</a>.
+        </p>
+
+        <h3>What you bring:</h3>
+
+        <p>
+          You’re focused on refining and modernizing your frontend systems and
+          the ways your organization works together.
+        </p>
+
+        <p>
+          You have a mature product and design organization. You value product,
+          design, and engineering equally, and they work together as peers to
+          solve problems.
+        </p>
+
+        <p>
+          You work sustainably. You have the maturity to avoid after hours work,
+          and allow your employees the time off they need to maintain health and
+          positivity.
+        </p>
+
+        <p>
+          You have women and people of color in senior and leadership roles. The
+          company I contribute to must look like the world I live in.
+        </p>
+
+        <p>
+          Although not necessary, you’ll move to the top of my list if you’re a
+          larger company (500-5000 in the tech organization), are publicly
+          traded or approaching IPO, or have established flex time for technical
+          exploration.
+        </p>
+
+        <h3>Non-alignments:</h3>
+
+        <p>
+          The following would make us a poor match. If you have these attributes
+          it’s best to seek another candidate.
+        </p>
+
+        <p>
+          You are an early stage startup with less than 20 people in your tech
+          organization.
+        </p>
+
+        <p>
+          You are focused on blockchain, Web3, EdTech, military, or government
+          products.
+        </p>
+
+        <p>
+          You don’t staff frontend focused engineers, or respect, promote, and
+          compensate them at the same rate as backend focused engineers. The
+          frontend space is deep, and it’s not feasible to build an industry
+          leading product without a staff of experts.
+        </p>
+
+        <p>
+          You expect my role to be on call more than once every quarter, outside
+          of business hours, or for products I do not have day-to-day
+          responsibility for.
+        </p>
+
+        <h3>A note on interviews:</h3>
+
+        <p>
+          I love interviews where we talk about the organizational why and
+          technical how of a feature set, pair on existing codebases, explore
+          architecture and ways of working, and take home exercises where I have
+          a chance to fully consider the requirements and edges of a prompt.
+          These are excellent ways for me to display my expertise in technology,
+          architecture, and communication.
+        </p>
+
+        <p>
+          I produce at a high rate in a work environment, but because of the
+          breadth of responsibilities at my level it takes me an hour or so to
+          get into a coding mindset. Speed focused and leetcode interviews do
+          not help a potential employer understand what I bring to a company—if
+          this is part of your interview process I suggest we revise that step
+          into a deeper technical discussion or pairing exercise. I will not
+          participate in technical interviews that don’t represent the role
+          being interviewed for (e.g., algorithm quizzing); these tend to be
+          cultural and socioeconomic filters instead of an exploration of the
+          way a candidate thinks about work, and are harmful to our profession.
+        </p>
+
+        <p>
+          Thanks for reading. If I sound like I can bring value to your company,
+          please contact me at
+          <a href="mailto:rob.wierzbowski@gmail.com"
+            >rob.wierzbowski@gmail.com</a
+          >. I look forward to hearing from you 👋🏼.
+        </p>
+      </article>
+    </main>
+  </body>
+</html>
