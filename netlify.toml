@@ -9,9 +9,9 @@
   skip_processing = true
 
 # Set selected assets to far future expiry to eek out a tiny bit more
-# performance, managing cache busting manually. This is a very minor
-# optimization, but I can't bring myself to make network roundtrips on every
-# page load for never-changing assets.
+# performance, at the cost of managing cache busting manually via file names.
+# This is a minor optimization, but I can't bring myself to make network
+# roundtrips on every page load for long-lived assets.
 [[headers]]
   for = "/*.woff2"
   [headers.values]
