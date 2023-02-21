@@ -48,22 +48,18 @@
 
       @font-face {
         font-display: block;
+        font-family: 'Inter Micro';
+        font-style: oblique -15deg 15deg;
+        font-weight: 100 900;
+        src: url('/Inter-Variable_slnt,wght-micro-subset.woff2') format('woff2');
+      }
+
+      @font-face {
+        font-display: block;
         font-family: 'Charter BT';
         font-style: normal;
         font-weight: normal;
         src: url('/CharterBT-Roman-subset.woff2') format('woff2');
-      }
-
-      /*
-        TODO: I'm not using this right now. If I don't find an occasion soon,
-        remove.
-      */
-      @font-face {
-        font-display: swap;
-        font-family: 'Charter BT';
-        font-style: italic;
-        font-weight: normal;
-        src: url('/charter-bt-italic.mv1-subset.woff2') format('woff2');
       }
 
       /*
@@ -145,10 +141,14 @@
         /* Colors */
         --off-black: hsl(0, 0%, 14%);
         --pink-saturated: hsl(336deg 81% 64%);
-        --highlighter: hsl(67deg 100% 55% / 75%);
+        --highlighter: hsl(67deg 100% 65%);
+
+        /* Font families */
+        --charter: 'Charter BT', serif;
+        --inter: 'Inter', 'Inter Micro', system-ui, sans-serif;
 
         color: var(--off-black);
-        font-family: 'Charter BT', 'Times New Roman', serif;
+        font-family: var(--charter);
         font-size: 1.1875rem;
         font-synthesis: none;
         line-height: 1.45;
@@ -175,6 +175,14 @@
       .title {
         margin-bottom: 1.25rem;
         font-size: 1.75rem;
+        line-height: 1.2;
+      }
+
+      .title {
+        font-family: var(--inter);
+        font-weight: 650;
+        margin-bottom: 1.25rem;
+        font-size: 3.05rem;
         line-height: 1.2;
       }
 
@@ -221,16 +229,14 @@
         color: var(--pink-saturated);
       }
 
-      .callout {
-        border: var(--pink-saturated) solid;
-        border-width: 0.12rem 0.3rem 0.24rem;
-
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-
-        color: white;
-        background: var(--pink-saturated);
-      }
+      /* Temporarily disabled */
+      /* .callout {
+        font-family: 'inter';
+        margin-bottom: 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1.1;
+        margin-top: 2.3rem;
+      } */
 
       .svg-defs {
         display: none;
