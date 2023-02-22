@@ -36,6 +36,7 @@
     />
 
     <title>Rob Wierzbowski</title>
+
     <meta
       name="description"
       content="Principal/Staff frontend engineer focusing on frontend platform, ways of working, and organizational efficiency"
@@ -227,24 +228,24 @@
         }
       }
 
+      /*
+        Content is a container for markdown-like text. In a larger system we'd
+        be using classes or components to add styles to each element, but on
+        this tiny page we'll use descendent element selectors to make it easy to
+        write HTML content by hand.
+      */
       .content {
         margin-bottom: 2.25rem;
       }
 
-      /*
-        `content` is a markdown-like text container that uses descendent
-        selectors. In a larger system we'd be using classes or components to add
-        styles to each element. But in this tiny page we'll use scoped element
-        styles to make it easy to write content with markup by hand.
-      */
       .content p {
         margin-bottom: 1rem;
       }
 
       /*
-        Using the latest and greatest! Previously I was coloring an "underline"
-        and separating it from descenders with a background gradient and text
-        shadow, but now we can use skip-ink and text decoration rules.
+        The latest and greatest! Previously I was creating an "underline" that
+        broke around descenders with a background gradient and text shadow, but
+        now we can use skip-ink and text decoration rules.
       */
       .content a,
       .link-text {
