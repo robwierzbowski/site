@@ -171,8 +171,8 @@
       :root {
         /* Colors */
         --off-black: hsl(0, 0%, 14%);
-        --pink-saturated: hsl(336deg 81% 64%);
         --highlighter: hsl(67deg 100% 65%);
+        --yellow: yellow;
 
         /* Font families */
         --charter: 'Charter BT', serif;
@@ -183,7 +183,7 @@
           Move to font-face when it's widely supported:
           https://caniuse.com/mdn-css_at-rules_font-face_font-feature-settings
         */
-        --inter-feature-settings: 'calt', 'cpsp', 'cv10', 'frac', 'ss02';
+        --inter-feature-settings: 'calt', 'cpsp', 'cv05', 'cv10', 'frac', 'zero';
 
         color: var(--off-black);
         font-family: var(--charter);
@@ -257,6 +257,8 @@
       */
       .content a,
       .link-text {
+        margin: -0.15rem -0.3rem -0.2rem;
+        padding: 0.15rem 0.3rem 0.2rem;
         text-decoration: underline;
         text-decoration-line: underline;
         text-decoration-skip-ink: auto;
@@ -266,27 +268,20 @@
 
       .content a:hover,
       .link:hover .link-text,
-
-      /* Focus via a pointer click */
       .content a:focus,
       .link:focus .link-text {
-        text-decoration-color: var(--pink-saturated);
+        background-color: var(--yellow);
+        text-decoration: none;
       }
 
-      /* Focus via tabbing */
-      .content a:focus-visible,
-      .link:focus-visible .link-text {
-        color: var(--pink-saturated);
+      .callout {
+        margin: 0 -1rem 1rem;
+        padding: 1rem;
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        font-weight: 650;
+        background-color: yellow;
       }
-
-      /* Temporarily disabled */
-      /* .callout {
-        font-family: 'inter';
-        margin-bottom: 0.75rem;
-        font-size: 1.25rem;
-        line-height: 1.1;
-        margin-top: 2.3rem;
-      } */
 
       .svg-defs {
         display: none;
@@ -322,8 +317,8 @@
           engineering leadership.
         </p>
 
-        <p>
-          <strong class="callout"
+        <p class="callout">
+          <strong
             >I'm currently seeking a Principal or Staff position at a company
             that's maturing their frontend platform.</strong
           >
