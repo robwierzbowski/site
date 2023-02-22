@@ -178,6 +178,13 @@
         --charter: 'Charter BT', serif;
         --inter: 'Inter', 'Inter Micro', system-ui, sans-serif;
 
+        /*
+          Font feature settings
+          Move to font-face when it's widely supported:
+          https://caniuse.com/mdn-css_at-rules_font-face_font-feature-settings
+        */
+        --inter-feature-settings: 'calt', 'cpsp', 'cv10', 'frac', 'ss02';
+
         color: var(--off-black);
         font-family: var(--charter);
         font-size: 1.1875rem;
@@ -208,6 +215,7 @@
       .title {
         margin: 3rem 0 3.75rem;
         font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
         font-size: 2.5rem;
         font-weight: 750;
         line-height: 1.15;
