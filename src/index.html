@@ -21,16 +21,18 @@
     -->
     <link rel="icon" href="/favicon-64.png" />
 
-    <!--
-      Preloading primary font and setting font-display to block to remove FOUT
-      entirely. This increases TTFP slightly, but results in less layout shift
-      and a more calming experience overall.
-    -->
     <link
       rel="preload"
       as="font"
       crossorigin
       href="/CharterBT-Roman-subset.woff2"
+    />
+
+    <link
+      rel="preload"
+      as="font"
+      crossorigin
+      href="/Inter-Variable_slnt,wght-micro-subset.woff2"
     />
 
     <title>Rob Wierzbowski</title>
@@ -44,8 +46,28 @@
         - - -
         Fonts
         - - -
+        I'm playing around with some font loading ideas. In almost all
+        production settings FOUT is preferable, but I'm preloading two small
+        fonts in head and setting their font-display to block. This results in a
+        calmer experience without FOUT or layout shifting but incurs a slight
+        penalty to contentful paint metrics.
       */
 
+      /*
+        The main body font
+      */
+      @font-face {
+        font-display: block;
+        font-family: 'Charter BT';
+        font-style: normal;
+        font-weight: normal;
+        src: url('/CharterBT-Roman-subset.woff2') format('woff2');
+      }
+
+      /*
+        A 20kb micro font. It will be replaced with the full Inter on subsequent
+        page loads.
+      */
       @font-face {
         font-display: block;
         font-family: 'Inter Micro';
@@ -54,12 +76,20 @@
         src: url('/Inter-Variable_slnt,wght-micro-subset.woff2') format('woff2');
       }
 
+      /*
+        The full Inter font will attempt to download on page load, but it will
+        only display if it loads in under 100ms. It will then be available on
+        all subsequent page loads. If the connection is fast, the micro font is
+        never shown and we waste 20kb over the network, but if the connection is
+        slow we can be sure a reduced version of Inter will be shown quickly,
+        without any FOUT.
+      */
       @font-face {
-        font-display: block;
-        font-family: 'Charter BT';
-        font-style: normal;
-        font-weight: normal;
-        src: url('/CharterBT-Roman-subset.woff2') format('woff2');
+        font-display: optional;
+        font-family: 'Inter';
+        font-style: oblique -15deg 15deg;
+        font-weight: 100 900;
+        src: url('/Inter-Variable_slnt,wght-subset.woff2') format('woff2');
       }
 
       /*
@@ -162,28 +192,39 @@
       }
 
       .main {
-        padding: 2.25rem 1.5rem 5rem;
+        padding: 1rem;
         max-width: 37rem;
+        font-size: 1.125rem;
       }
 
       @media (min-width: 560px) {
         .main {
-          padding-bottom: 3.5rem;
+          padding: 1rem 1.5rem;
+          font-size: 1rem;
         }
       }
 
       .title {
-        margin-bottom: 1.25rem;
-        font-size: 1.75rem;
-        line-height: 1.2;
+        margin: 3rem 0 3.75rem;
+        font-family: var(--inter);
+        font-size: 2.5rem;
+        font-weight: 750;
+        line-height: 1.15;
+
+        /* Content-specific */
+        max-width: 13rem;
       }
 
-      .title {
-        font-family: var(--inter);
-        font-weight: 650;
-        margin-bottom: 1.25rem;
-        font-size: 3.05rem;
-        line-height: 1.2;
+      @media (min-width: 560px) {
+        .title {
+          margin: 2rem 0 1.5rem;
+          font-size: 1.75rem;
+          font-weight: 650;
+          line-height: 1.2;
+
+          /* Content-specific */
+          max-width: none;
+        }
       }
 
       .content {
@@ -244,6 +285,7 @@
 
       .links {
         list-style-type: none;
+        margin-bottom: 2.75rem;
       }
 
       .link-icon {
