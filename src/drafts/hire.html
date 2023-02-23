@@ -1,22 +1,18 @@
 <!DOCTYPE html>
 <!--
   You might notice this file isn't minimized. In fact, it's not processed in any
-  way. I started coding in the latter half of the 90s when viewing source was an
-  exciting way to dive into the thought process of your distant peers, people
-  from across the world who had built something that made you stop and ask
-  "how!?". Build processes and SPAs have done amazing things for web usability
-  and interactivity in the last 25 years, but on my site and my time I'm
-  recapturing a little of that old wonder. No build process, no dependencies,
-  just code and comments typed directly into an HTML file for anyone that cares
-  to look.
+  way. I started writing code for the web in the late 90s, when viewing source
+  was often the only way we had to dive into the minds of people who built
+  something that made us ask "how!?". It was an exciting time of discovery,
+  spelunking, and possibilities. In the years since, compilers and SPAs have
+  taken the web amazing places, but on this site and with my time I'd like to
+  recapture some of that old wonder. No build process, no dependencies, just
+  code and comments typed into an HTML file for anyone that cares to look.
 -->
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <!-- TEMP: Don't index while in draft -->
-    <meta name="robots" content="noindex" />
 
     <!--
       TODO: Replace placeholder favicon with something more personal, use svg
@@ -24,11 +20,6 @@
     -->
     <link rel="icon" href="/favicon-64.png" />
 
-    <!--
-      Preloading primary font and setting font-display to block to remove FOUT
-      entirely. This increases TTFP slightly, but results in less layout shift
-      and a more calming experience overall.
-    -->
     <link
       rel="preload"
       as="font"
@@ -36,10 +27,18 @@
       href="/CharterBT-Roman-subset.woff2"
     />
 
-    <title>It's me, ya boi</title>
+    <link
+      rel="preload"
+      as="font"
+      crossorigin
+      href="/Inter-Variable_slnt,wght-micro-subset.2022-02-23.woff2"
+    />
+
+    <title>Rob Wierzbowski</title>
+
     <meta
       name="description"
-      content="Principal/Staff frontend engineer open to new roles"
+      content="Principal/Staff frontend engineer focusing on frontend platform, ways of working, and organizational efficiency"
     />
 
     <style type="text/css">
@@ -47,8 +46,16 @@
         - - -
         Fonts
         - - -
+        I'm playing around with some font loading ideas. In almost all
+        production settings FOUT is preferable, but here I'm preloading two
+        small fonts in head and setting their font-display to block. This
+        results in a calmer experience without FOUT or layout shifting but
+        incurs a slight penalty to contentful paint metrics.
       */
 
+      /*
+        The main body font
+      */
       @font-face {
         font-display: block;
         font-family: 'Charter BT';
@@ -58,15 +65,32 @@
       }
 
       /*
-        TODO: I'm not using this right now. If I don't find an occasion soon,
-        remove.
+        A 20kb micro version of Inter. It will be replaced with the full Inter
+        on subsequent page loads.
       */
       @font-face {
-        font-display: swap;
-        font-family: 'Charter BT';
-        font-style: italic;
-        font-weight: normal;
-        src: url('/charter-bt-italic.mv1-subset.woff2') format('woff2');
+        font-display: block;
+        font-family: 'Inter Micro';
+        font-style: oblique -15deg 15deg;
+        font-weight: 100 900;
+        src: url('/Inter-Variable_slnt,wght-micro-subset.2022-02-23.woff2')
+          format('woff2');
+      }
+
+      /*
+        The full Inter font will attempt to download on page load, but it will
+        only display if it loads in under 100ms. It will then be available on
+        all subsequent page loads. If the connection is fast, the micro font is
+        never shown and I waste 20kb over the network, but if the connection is
+        slow I can be sure a reduced version of Inter will be shown quickly,
+        without any FOUT.
+      */
+      @font-face {
+        font-display: optional;
+        font-family: 'Inter';
+        font-style: oblique -15deg 15deg;
+        font-weight: 100 900;
+        src: url('/Inter-Variable_slnt,wght-subset.woff2') format('woff2');
       }
 
       /*
@@ -78,11 +102,6 @@
         young
       */
 
-      /* Use aesthetic hover styles for focus when a pointer is in use */
-      :focus-visible {
-        outline: none;
-      }
-
       *,
       ::before,
       ::after {
@@ -91,8 +110,6 @@
 
       body {
         margin: 0;
-        background: #80ded9;
-        background: #b3e6e4;
       }
 
       svg {
@@ -126,6 +143,14 @@
         margin: 0;
       }
 
+      em {
+        font-style: unset;
+      }
+
+      strong {
+        font-weight: unset;
+      }
+
       a {
         color: inherit;
         font-weight: inherit;
@@ -148,12 +173,23 @@
 
       :root {
         /* Colors */
+        --highlighter: hsl(296deg 96% 58% / 50%);
         --off-black: hsl(0, 0%, 14%);
-        --pink-saturated: hsl(336deg 81% 64%);
-        --highlighter: hsl(67deg 100% 55% / 75%);
+        --yellow: yellow;
+
+        /* Font families */
+        --charter: 'Charter BT', serif;
+        --inter: 'Inter', 'Inter Micro', system-ui, sans-serif;
+
+        /*
+          Font feature settings
+          Move to font-face when it's widely supported:
+          https://caniuse.com/mdn-css_at-rules_font-face_font-feature-settings
+        */
+        --inter-feature-settings: 'calt', 'cpsp', 'cv05', 'cv10', 'frac', 'zero';
 
         color: var(--off-black);
-        font-family: 'Charter BT', 'Times New Roman', serif;
+        font-family: var(--charter);
         font-size: 1.1875rem;
         font-synthesis: none;
         line-height: 1.45;
@@ -167,44 +203,77 @@
       }
 
       .main {
-        padding: 2.25rem 1.5rem 5rem;
-        /* max-width: 37rem; */
-        max-width: 44rem;
+        padding: 1rem;
+        max-width: 37rem;
+        font-size: 1.125rem;
       }
 
       @media (min-width: 560px) {
         .main {
-          padding-bottom: 3.5rem;
+          padding: 1rem 1.5rem;
+          font-size: 1rem;
         }
       }
 
       .title {
-        margin-bottom: 1.25rem;
-        font-size: 1.75rem;
-        line-height: 1.2;
+        margin: 3rem 0 3.75rem;
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        font-size: 2.5rem;
+        font-weight: 750;
+        line-height: 1.15;
+
+        /* Content-specific */
+        max-width: 17rem;
       }
 
+      @media (min-width: 560px) {
+        .title {
+          margin: 2rem 0 1.5rem;
+          font-size: 1.75rem;
+          font-weight: 650;
+          line-height: 1.2;
+
+          /* Content-specific */
+          max-width: none;
+        }
+      }
+
+      .callout {
+        margin: 0 -1rem 1rem;
+        padding: 1rem;
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        font-weight: 650;
+        background-color: var(--yellow);
+      }
+
+      /*
+        .content is a container for markdown-like text. In a larger system I'd
+        use classes or components to add styles to each element, but on this
+        tiny page I'm use descendent element selectors to make it easy to write
+        HTML content by hand.
+      */
       .content {
         margin-bottom: 2.25rem;
       }
 
-      /*
-        `content` is a markdown-like text container that uses descendent
-        selectors. In a larger system we'd be using classes or components to add
-        styles to each element. But in this tiny page we'll use scoped element
-        styles to make it easy to write content with markup by hand.
-      */
       .content p {
         margin-bottom: 1rem;
       }
 
-      /*
-        Using the latest and greatest! Previously I was coloring an "underline"
-        and separating it from descenders with a background gradient and text
-        shadow, but now we can use skip-ink and text decoration rules.
-      */
       .content a,
-      .link-text {
+      .footer-link {
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        /* Know when to use rem, know when to use em 💅🏼 */
+        font-size: 0.94em;
+        font-weight: 625;
+        /*
+          The latest and greatest! Previously I was using a background gradient
+          and text shadow to create an "underline" that broke around descenders,
+          but now we can do the same with skip-ink and text-decoration rules.
+        */
         text-decoration: underline;
         text-decoration-line: underline;
         text-decoration-skip-ink: auto;
@@ -212,206 +281,275 @@
         text-underline-offset: 2px;
       }
 
+      .content a {
+        margin: -0.15rem -0.3rem -0.2rem;
+        padding: 0.15rem 0.3rem 0.2rem;
+      }
+
+      .footer-link {
+        display: table;
+        margin: -0.15rem -0.5rem -0.2rem;
+        padding: 0.15rem 0.5rem 0.2rem;
+      }
+
       .content a:hover,
-      .link:hover .link-text,
-
-      /* Focus via a pointer click */
+      .footer-link:hover,
       .content a:focus,
-      .link:focus .link-text {
-        text-decoration-color: var(--pink-saturated);
+      .footer-link:focus {
+        background-color: var(--yellow);
+        text-decoration: none;
       }
 
-      /* Focus via tabbing */
-      .content a:focus-visible,
-      .link:focus-visible .link-text {
-        color: var(--pink-saturated);
-      }
-
-      .callout {
-        border: var(--pink-saturated) solid;
-        border-width: 0.12rem 0.3rem 0.24rem;
-
-        box-decoration-break: clone;
-        -webkit-box-decoration-break: clone;
-
-        color: white;
-        background: var(--pink-saturated);
-      }
-
-      .svg-defs {
-        display: none;
-      }
-
-      .links {
+      .footer-links {
         list-style-type: none;
+        margin-bottom: 2.75rem;
       }
 
-      .link-icon {
+      .footer-link-icon {
         display: inline-block;
-        margin-right: 0.5rem;
+        margin-right: 0.25rem;
         height: 1rem;
         width: 1.25rem;
       }
 
-      .link:hover .link-icon,
-      .link:focus .link-icon {
-        fill: var(--pink-saturated);
+      @media (min-width: 560px) {
+        .footer-link-icon {
+          margin-right: 0.375rem;
+        }
+      }
+
+      .svg-defs {
+        display: none;
       }
     </style>
   </head>
 
   <body>
     <main class="main">
-      <h1 class="title">
-        Hi everyone. My name is Rob Wierzbowski, and I'm looking for my next
-        role.
-      </h1>
-
       <article class="content">
-        <p>
-          I'm an engineer and tech lead with 15+ years of experience. I multiply
-          the effectiveness of an organization by helping teams build efficient,
-          high quality systems and by solving problems with a combination of
-          technical and organizational strategy. I love working with
-          collaborative and emotionally intelligent people on beautiful, usable
-          products.
-        </p>
+        <section>
+          <h1 class="title">
+            Hi everyone. I'm Rob Wierzbowski, and I'm looking for my next role.
+          </h1>
 
-        <p>
-          This document describes the areas where I can make the most impact,
-          what engages me, and the environment I thrive in. If we sound like a
-          match, please reach out to me at
-          <a href="mailto:rob.wierzbowski@gmail.com"
-            >rob.wierzbowski@gmail.com</a
-          >.
-        </p>
+          <p>
+            I'm an engineer and tech lead with 15+ years of experience. I
+            multiply the effectiveness of an organization by helping teams build
+            efficient, high quality systems and by solving problems with a
+            combination of technical and organizational strategy. I love working
+            with collaborative and emotionally intelligent people on beautiful,
+            usable products.
+          </p>
 
-        <h3>What I'm looking for:</h3>
+          <p>
+            This document describes the areas where I can make the most impact,
+            what engages me, and the environment I thrive in. If we sound like a
+            match, please reach out to me at
+            <a href="mailto:rob.wierzbowski@gmail.com"
+              >rob.wierzbowski@gmail.com</a
+            >.
+          </p>
+        </section>
 
-        <p>
-          A Staff+ role responsible for defining and refining frontend
-          practices. I prefer working on a platform or systems team, but I’m
-          open to any role that solves broad problems in the frontend space.
-        </p>
+        <section>
+          <h3 class="subtitle">What I'm looking for:</h3>
 
-        <h3>Where:</h3>
+          <p>
+            A Staff+ role responsible for defining and refining frontend
+            practices. I prefer working on a platform or systems team, but I’m
+            open to any role that solves broad problems in the frontend space.
+          </p>
+        </section>
 
-        <p>USA remote. I’m also open to partial remote in Austin, Texas.</p>
+        <section>
+          <h3 class="subtitle">Where:</h3>
 
-        <h3>When:</h3>
+          <p>
+            United States remote. I'd prefer to work with a team that's located
+            primarily in North American time zones. I’m also open to partial
+            remote in Austin, Texas.
+          </p>
+        </section>
 
-        <p>
-          Interviewing now. Ideally I’d like to take a few weeks between hire
-          and start date to come into the role centered and rested.
-        </p>
+        <section>
+          <h3 class="subtitle">When:</h3>
 
-        <h3>What I bring:</h3>
+          <p>
+            Interviewing now. Ideally I’d like to take a few weeks between hire
+            and start to ensure I'm fully centered and rested.
+          </p>
+        </section>
 
-        <p>
-          I shine when taking the long view, building tools and defining
-          patterns that fold a considered tech strategy into the day-to-day work
-          of engineering teams. For all the details, you can
-          <a href="/Robert-Wierzbowski-2023-2-9.pdf">view my resume here</a>.
-        </p>
+        <section>
+          <h3 class="subtitle">What I bring:</h3>
 
-        <h3>What you bring:</h3>
+          <p>
+            I shine when taking the long view, building tools and defining
+            patterns that fold a well-reasoned tech strategy into the day-to-day
+            work of engineering teams. View my
+            <a href="/Robert-Wierzbowski-2023-2-9.pdf">resume</a> or
+            <a href="https://www.linkedin.com/in/robertwierzbowski/"
+              >Linkedin</a
+            >
+            for all the details, or better yet contact me and schedule a
+            conversation.
+          </p>
+        </section>
 
-        <p>
-          You’re focused on refining and modernizing your frontend systems and
-          the ways your organization works together.
-        </p>
+        <section>
+          <h3 class="subtitle">What you bring:</h3>
 
-        <p>
-          You have a strong product and design organization. You value product,
-          design, and engineering equally, and they work together as peers to
-          solve problems.
-        </p>
+          <p>
+            You’re focused on refining and modernizing your frontend systems and
+            the ways your organization works together.
+          </p>
 
-        <p>
-          You work sustainably. You have the maturity to avoid after hours work,
-          and allow your employees the time off they need to maintain health and
-          positivity.
-        </p>
+          <p>
+            You have a strong product and design organization. You value
+            product, design, and engineering equally, and encourage them to work
+            together as peers to solve problems.
+          </p>
 
-        <p>
-          You have women and people of color in senior and leadership roles. The
-          company I contribute to must look like the world I live in.
-        </p>
+          <p>
+            You work sustainably. You have the maturity to avoid after hours
+            work, and allow your employees the time off they need to maintain
+            health and positivity.
+          </p>
 
-        <p>
-          You offer compensation and benefits at a competitive rate. Salary,
-          401k, insurance, and vacation are especially important to me, although
-          total comp makes up for the sum of its parts.
-        </p>
+          <p>
+            You have women and people of color in senior and leadership roles.
+            The company I contribute to must look like the world I live in.
+          </p>
 
-        <p>
-          Although not necessary, you’ll move to the top of my list if you’re a
-          larger company (300-5000 in the tech organization), are publicly
-          traded or approaching IPO, or have established flex time for technical
-          exploration.
-        </p>
+          <p>
+            You offer compensation and benefits at a competitive rate. Salary,
+            401k, insurance, and time off are especially important to me,
+            although total comp makes up for the sum of its parts.
+          </p>
 
-        <h3>Non-alignments:</h3>
+          <p>
+            Although not necessary, you’ll move to the top of my list if you’re
+            a larger company (500-5000 in the tech organization), are publicly
+            traded or approaching IPO, or have established flex time for
+            technical exploration.
+          </p>
+        </section>
 
-        <p>
-          The following would make us a poor match. If you have these attributes
-          it’s best to seek another candidate.
-        </p>
+        <section>
+          <h3 class="subtitle">Non-alignments:</h3>
 
-        <p>
-          You're a startup with less than 20 people in your tech organization.
-        </p>
+          <p>
+            The following would make us a poor match. If you have these
+            attributes it’s best to seek another candidate.
+          </p>
 
-        <p>
-          You are focused on military, government, blockchain, Web3, or EdTech
-          products.
-        </p>
+          <p>
+            You're a startup with less than 20 people in your tech organization.
+          </p>
 
-        <p>
-          You don’t staff frontend focused engineers, or respect, promote, and
-          compensate them at the same rate as backend focused engineers. The
-          frontend space is deep, and it’s not feasible to build an industry
-          leading product without a staff of experts.
-        </p>
+          <p>
+            You are focused on military, government, blockchain, Web3, or EdTech
+            products.
+          </p>
 
-        <p>
-          You expect my role to be on call more than once every quarter, outside
-          of business hours, or for products I do not have day-to-day
-          responsibility for.
-        </p>
+          <p>
+            You don’t staff frontend focused engineers, or respect, promote, and
+            compensate them at the same rate as backend focused engineers. The
+            frontend space is deep, and a staff of experts is required to build
+            an industry leading product.
+          </p>
 
-        <h3>A note on interviews:</h3>
+          <p>
+            You expect my role to be on call more than once every quarter,
+            outside of business hours, or for products I do not have day-to-day
+            responsibility for.
+          </p>
+        </section>
 
-        <p>
-          An interview process is a reflection of company culture. I look for
-          interviews that allow me to communicate my expertise in technology,
-          architecture, and leadership. I love an interview where we talk about
-          the organizational why and technical how of a feature set, pair on
-          existing codebases, or explore architecture and ways of working. A
-          take home coding exercise where I can fully consider the requirements
-          and edges of a prompt is also effective.
-        </p>
+        <section>
+          <h3 class="subtitle">A note on interviews:</h3>
 
-        <p>
-          Because of the breadth of the responsibilities at my level it takes me
-          an hour or so to get into a coding mindset. Leetcode and speed focused
-          exercises do not help a potential employer understand what I bring to
-          a company. If this is a step in your interview process I suggest we
-          replace it with a deeper technical discussion or pairing exercise. I
-          don't participate in technical interviews that are unrelated to the
-          role (e.g., algorithm quizzes); these tend to be cultural and
-          socioeconomic filters instead of an investigation of how a candidate
-          thinks about work, and are harmful to our profession.
-        </p>
+          <p>
+            The interview process is a reflection of company culture. I look for
+            interviews that allow me to communicate my expertise in technology,
+            architecture, and leadership. I love an interview where we talk
+            about the organizational why and technical how of a feature set,
+            pair on existing codebases, or explore architecture and ways of
+            working. Take home coding exercises where I can fully consider the
+            requirements and edges of a prompt are also effective.
+          </p>
 
-        <p>
-          Thanks for reading. If you think we could be a good match, contact me
-          at
-          <a href="mailto:rob.wierzbowski@gmail.com"
-            >rob.wierzbowski@gmail.com</a
-          >. I look forward to hearing from you 👋🏼.
-        </p>
+          <p>
+            Because of the breadth of the responsibilities at my level, it takes
+            me an hour or so to get into a coding mindset. Leetcode and speed
+            focused exercises do not help a potential employer understand what I
+            bring to a company. If this is a step in your interview process I
+            suggest we replace it with a deeper technical discussion or pairing
+            exercise. I don't participate in technical interviews that are
+            unrelated to the role (e.g., algorithm quizzes); these tend to be
+            cultural and socioeconomic filters instead of an investigation of a
+            candidate's pertinent skills, and are harmful to our profession.
+          </p>
+        </section>
+
+        <section>
+          <p>
+            Thanks for reading. If you think we could be a good match, contact
+            me at
+            <a href="mailto:rob.wierzbowski@gmail.com"
+              >rob.wierzbowski@gmail.com</a
+            >. I look forward to hearing from you 👋🏼.
+          </p>
+        </section>
       </article>
+
+      <footer>
+        <!-- TODO: Add linkedin to footer links -->
+        <ul class="footer-links">
+          <li>
+            <a class="footer-link" href="mailto:rob.wierzbowski@gmail.com">
+              <svg class="footer-link-icon">
+                <use href="#svg-mail" x="0" y="0"></use></svg
+              >rob.wierzbowski@gmail.com
+            </a>
+          </li>
+
+          <li>
+            <a class="footer-link" href="https://github.com/robwierzbowski">
+              <svg class="footer-link-icon">
+                <use href="#svg-github" x="0" y="0"></use></svg
+              >robwierzbowski
+            </a>
+          </li>
+        </ul>
+
+        <svg
+          class="svg-defs"
+          clip-rule="evenodd"
+          fill-rule="evenodd"
+          stroke-linejoin="round"
+          stroke-miterlimit="1.414"
+          viewBox="0 0 18 18"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            <path
+              id="svg-mail"
+              d="M0 3.429V14.57h18V3.43H0zm1.714 9.428V6.115l13.324 6.742H1.714zm14.572-.9l-5.467-2.921 5.467-2.921v5.841zM9.504 8.063L3.756 5.143h11.31L9.504 8.064z"
+            >
+              <title>Email</title>
+            </path>
+
+            <path
+              id="svg-github"
+              d="M8.999.222a9 9 0 00-2.845 17.537c.45.083.614-.195.614-.432 0-.215-.008-.924-.012-1.676-2.262.413-2.842-.554-3.032-1.06-.097-.261-.534-1.06-.92-1.27-.317-.174-.76-.585-.017-.594.711-.008 1.22.656 1.38.927.807 1.367 2.107.978 2.618.747.082-.58.315-.977.572-1.201-1.998-.228-4.1-1-4.1-4.448 0-.983.352-1.785.926-2.415-.092-.229-.401-1.144.09-2.383 0 0 .754-.241 2.474.923.717-.2 1.487-.3 2.252-.303a8.585 8.585 0 012.253.304c1.717-1.166 2.473-.923 2.473-.923.492 1.24.182 2.154.09 2.382.576.63.925 1.432.925 2.415 0 3.457-2.105 4.218-4.11 4.441.324.279.61.826.61 1.665 0 1.203-.011 2.173-.011 2.47 0 .24.163.52.62.431A9 9 0 008.998.222z"
+            >
+              <title>Github</title>
+            </path>
+          </defs>
+        </svg>
+      </footer>
     </main>
   </body>
 </html>
