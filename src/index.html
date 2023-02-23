@@ -244,6 +244,15 @@
         }
       }
 
+      .callout {
+        margin: 0 -1rem 1rem;
+        padding: 1rem;
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        font-weight: 650;
+        background-color: var(--yellow);
+      }
+
       /*
         .content is a container for markdown-like text. In a larger system we'd
         be using classes or components to add styles to each element, but on
@@ -258,15 +267,18 @@
         margin-bottom: 1rem;
       }
 
-      /*
-        The latest and greatest! Previously I was using a background gradient
-        and text shadow to create an "underline" that broke around descenders,
-        but now we can do the same with skip-ink and text-decoration rules.
-      */
       .content a,
-      .link-text {
-        margin: -0.15rem -0.3rem -0.2rem;
-        padding: 0.15rem 0.3rem 0.2rem;
+      .footer-link {
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        /* Know when to use rem, know when to use em 💅🏼 */
+        font-size: 0.94em;
+        font-weight: 625;
+        /*
+          The latest and greatest! Previously I was using a background gradient
+          and text shadow to create an "underline" that broke around descenders,
+          but now we can do the same with skip-ink and text-decoration rules.
+        */
         text-decoration: underline;
         text-decoration-line: underline;
         text-decoration-skip-ink: auto;
@@ -274,42 +286,39 @@
         text-underline-offset: 2px;
       }
 
+      .content a {
+        margin: -0.15rem -0.3rem -0.2rem;
+        padding: 0.15rem 0.3rem 0.2rem;
+      }
+
+      .footer-link {
+        display: table;
+        margin: -0.15rem -0.5rem -0.2rem;
+        padding: 0.15rem 0.5rem 0.2rem;
+      }
+
       .content a:hover,
-      .link:hover .link-text,
+      .footer-link:hover,
       .content a:focus,
-      .link:focus .link-text {
+      .footer-link:focus {
         background-color: var(--yellow);
         text-decoration: none;
       }
 
-      .callout {
-        margin: 0 -1rem 1rem;
-        padding: 1rem;
-        font-family: var(--inter);
-        font-feature-settings: var(--inter-feature-settings);
-        font-weight: 650;
-        background-color: var(--yellow);
-      }
-
-      .svg-defs {
-        display: none;
-      }
-
-      .links {
+      .footer-links {
         list-style-type: none;
         margin-bottom: 2.75rem;
       }
 
-      .link-icon {
+      .footer-link-icon {
         display: inline-block;
         margin-right: 0.5rem;
         height: 1rem;
         width: 1.25rem;
       }
 
-      .link:hover .link-icon,
-      .link:focus .link-icon {
-        fill: var(--pink-saturated);
+      .svg-defs {
+        display: none;
       }
     </style>
   </head>
@@ -356,6 +365,25 @@
       </article>
 
       <footer>
+        <!-- TODO: Add linkedin here -->
+        <ul class="footer-links">
+          <li>
+            <a class="footer-link" href="mailto:rob.wierzbowski@gmail.com">
+              <svg class="footer-link-icon">
+                <use href="#svg-mail" x="0" y="0"></use></svg
+              >rob.wierzbowski@gmail.com
+            </a>
+          </li>
+
+          <li>
+            <a class="footer-link" href="https://github.com/robwierzbowski">
+              <svg class="footer-link-icon">
+                <use href="#svg-github" x="0" y="0"></use></svg
+              >robwierzbowski
+            </a>
+          </li>
+        </ul>
+
         <svg
           class="svg-defs"
           clip-rule="evenodd"
@@ -382,27 +410,6 @@
             </path>
           </defs>
         </svg>
-
-        <!-- TODO: Add linkedin here -->
-        <ul class="links">
-          <li>
-            <a class="link" href="mailto:rob.wierzbowski@gmail.com">
-              <svg class="link-icon">
-                <use href="#svg-mail" x="0" y="0"></use>
-              </svg>
-              <span class="link-text">rob.wierzbowski@gmail.com</span>
-            </a>
-          </li>
-
-          <li>
-            <a class="link" href="https://github.com/robwierzbowski">
-              <svg class="link-icon">
-                <use href="#svg-github" x="0" y="0"></use>
-              </svg>
-              <span class="link-text">robwierzbowski</span>
-            </a>
-          </li>
-        </ul>
       </footer>
     </main>
   </body>
