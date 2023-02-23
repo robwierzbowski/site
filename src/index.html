@@ -47,10 +47,10 @@
         Fonts
         - - -
         I'm playing around with some font loading ideas. In almost all
-        production settings FOUT is preferable, but I'm preloading two small
-        fonts in head and setting their font-display to block. This results in a
-        calmer experience without FOUT or layout shifting but incurs a slight
-        penalty to contentful paint metrics.
+        production settings FOUT is preferable, but here I'm preloading two
+        small fonts in head and setting their font-display to block. This
+        results in a calmer experience without FOUT or layout shifting but
+        incurs a slight penalty to contentful paint metrics.
       */
 
       /*
@@ -65,8 +65,8 @@
       }
 
       /*
-        A 20kb micro font. It will be replaced with the full Inter on subsequent
-        page loads.
+        A 20kb micro version of Inter. It will be replaced with the full Inter
+        on subsequent page loads.
       */
       @font-face {
         font-display: block;
@@ -80,8 +80,8 @@
         The full Inter font will attempt to download on page load, but it will
         only display if it loads in under 100ms. It will then be available on
         all subsequent page loads. If the connection is fast, the micro font is
-        never shown and we waste 20kb over the network, but if the connection is
-        slow we can be sure a reduced version of Inter will be shown quickly,
+        never shown and I waste 20kb over the network, but if the connection is
+        slow I can be sure a reduced version of Inter will be shown quickly,
         without any FOUT.
       */
       @font-face {
@@ -100,11 +100,6 @@
         patterns of normalization and typographical resets when the web was
         young
       */
-
-      /* Use aesthetic hover styles for focus when a pointer is in use */
-      :focus-visible {
-        outline: none;
-      }
 
       *,
       ::before,
@@ -253,10 +248,10 @@
       }
 
       /*
-        .content is a container for markdown-like text. In a larger system we'd
-        be using classes or components to add styles to each element, but on
-        this tiny page we'll use descendent element selectors to make it easy to
-        write HTML content by hand.
+        .content is a container for markdown-like text. In a larger system I'd
+        use classes or components to add styles to each element, but on this
+        tiny page I'm use descendent element selectors to make it easy to write
+        HTML content by hand.
       */
       .content {
         margin-bottom: 2.25rem;
