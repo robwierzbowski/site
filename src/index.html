@@ -239,15 +239,6 @@
         }
       }
 
-      .callout {
-        margin: 0 -1rem 1rem;
-        padding: 1rem;
-        font-family: var(--inter);
-        font-feature-settings: var(--inter-feature-settings);
-        font-weight: 650;
-        background-color: var(--yellow);
-      }
-
       /*
         .content is a container for markdown-like text. In a larger system I'd
         use classes or components to add styles to each element, but on this
@@ -318,6 +309,26 @@
         }
       }
 
+      .callout {
+        margin: 0 -1rem 1rem;
+        padding: 1rem;
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        font-weight: 650;
+        background-color: var(--yellow);
+      }
+
+      .callout a {
+        margin: -0.15rem -0.2rem -0.25rem -0.15rem;
+        padding: 0.15rem 0.2rem 0.25rem 0.15rem;
+        font-size: unset;
+      }
+
+      .callout a:hover,
+      .callout a:focus {
+        background-color: #a4f8cc;
+      }
+
       .svg-defs {
         display: none;
       }
@@ -340,6 +351,7 @@
             >I'm currently seeking a Principal or Staff position at a company
             that's maturing their frontend platform.</strong
           >
+          Read more <a href="/hire-me">here</a>.
         </p>
 
         <p>
