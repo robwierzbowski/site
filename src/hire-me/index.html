@@ -174,7 +174,8 @@
       :root {
         /* Colors */
         --highlighter: hsl(296deg 96% 58% / 50%);
-        --off-black: hsl(0, 0%, 14%);
+        --off-black: hsl(0 0% 14%);
+        --seafoam: hsl(149deg 86% 81%);
         --yellow: yellow;
 
         /* Font families */
@@ -219,17 +220,21 @@
         margin: 3rem 0 3.75rem;
         font-family: var(--inter);
         font-feature-settings: var(--inter-feature-settings);
-        font-size: 2rem;
         font-weight: 750;
         line-height: 1.15;
+
+        /* Content-specific */
+        font-size: 2rem;
       }
 
       @media (min-width: 560px) {
         .title {
           margin: 2rem 0 1.5rem;
-          font-size: 1.6rem;
           font-weight: 650;
           line-height: 1.2;
+
+          /* Content-specific */
+          font-size: 1.6rem;
         }
       }
 
@@ -241,20 +246,11 @@
         font-weight: 650;
       }
 
-      .callout {
-        margin: 0 -1rem 1rem;
-        padding: 1rem;
-        font-family: var(--inter);
-        font-feature-settings: var(--inter-feature-settings);
-        font-weight: 650;
-        background-color: var(--yellow);
-      }
-
       /*
-        .content is a container for markdown-like text. In a larger system I'd
-        use classes or components to add styles to each element, but on this
-        tiny page I'm use descendent element selectors to make it easy to write
-        HTML content by hand.
+        `.content` is a container for markdown-like text. In a larger system I'd
+        use module classes or components to add similar styles to each element,
+        but on this tiny section I'll use descendent element selectors when it
+        makes it easier to write HTML content by hand.
       */
       .content {
         margin-bottom: 2.25rem;
@@ -264,15 +260,38 @@
         margin-bottom: 1rem;
       }
 
-      .content a,
-      .footer-link {
+      .content-callout {
+        margin: 0 -1rem 1rem;
+        padding: 1rem;
         font-family: var(--inter);
         font-feature-settings: var(--inter-feature-settings);
-        /* Know when to use rem, know when to use em 💅🏼 */
-        font-size: 0.94em;
-        font-weight: 625;
+        font-weight: 650;
+        background-color: var(--yellow);
+      }
+
+      .content-callout:has(.callout-link:hover),
+      .content-callout:has(.callout-link:focus) {
+        background-color: var(--seafoam);
+      }
+
+      /*
+        Since all modern browsers support `@supports`, we can now use `not`
+        fallbacks, and write our ideal code at the root level! What a pleasure.
+      */
+      @supports not (has(*)) {
+        .callout-link:hover,
+        .callout-link:focus {
+          text-decoration: underline;
+          text-decoration-thickness: 0.2rem;
+          text-decoration-color: var(--seafoam);
+        }
+      }
+
+      .callout-link,
+      .content-link,
+      .footer-link {
         /*
-          The latest and greatest! Previously I was using a background gradient
+          The latest and greatest 🖤. Previously I was using a background gradient
           and text shadow to create an "underline" that broke around descenders,
           but now we can do the same with skip-ink and text-decoration rules.
         */
@@ -283,7 +302,21 @@
         text-underline-offset: 2px;
       }
 
-      .content a {
+      .content-link,
+      .footer-link {
+        /* Know when to use rem, know when to use em 💅🏼 */
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        font-size: 0.94em;
+        font-weight: 625;
+      }
+
+      .callout-link {
+        margin: -0.15rem -0.2rem -0.25rem -0.15rem;
+        padding: 0.15rem 0.2rem 0.25rem 0.15rem;
+      }
+
+      .content-link {
         margin: -0.15rem -0.3rem -0.2rem;
         padding: 0.15rem 0.3rem 0.2rem;
       }
@@ -294,9 +327,9 @@
         padding: 0.15rem 0.5rem 0.2rem;
       }
 
-      .content a:hover,
+      .content-link:hover,
       .footer-link:hover,
-      .content a:focus,
+      .content-link:focus,
       .footer-link:focus {
         background-color: var(--yellow);
         text-decoration: none;
@@ -348,7 +381,7 @@
             This document describes what engages me, where I make the most
             impact, and the environment I thrive in. If we sound like a match,
             you can contact me at
-            <a href="mailto:rob.wierzbowski@gmail.com"
+            <a class="content-link" href="mailto:rob.wierzbowski@gmail.com"
               >rob.wierzbowski@gmail.com</a
             >.
           </p>
@@ -390,13 +423,22 @@
             I shine when taking the long view, building tools and defining
             patterns that fold a well-reasoned tech strategy into the day-to-day
             work of engineering teams. View my
-            <a href="/Robert-Wierzbowski-Resume-2023-02-24.pdf">resume</a> or
-            <a href="https://www.linkedin.com/in/robertwierzbowski/"
+            <a
+              class="content-link"
+              href="/Robert-Wierzbowski-Resume-2023-02-24.pdf"
+              >resume</a
+            >
+            or
+            <a
+              class="content-link"
+              href="https://www.linkedin.com/in/robertwierzbowski/"
               >Linkedin</a
             >
             for some of the details, or better yet
-            <a href="mailto:rob.wierzbowski@gmail.com">contact me</a> and
-            schedule a conversation.
+            <a class="content-link" href="mailto:rob.wierzbowski@gmail.com"
+              >contact me</a
+            >
+            and schedule a conversation.
           </p>
         </section>
 
@@ -500,7 +542,7 @@
           <p>
             Thanks for reading. If you think we could be a good match, go ahead
             and send me a mail at
-            <a href="mailto:rob.wierzbowski@gmail.com"
+            <a class="content-link" href="mailto:rob.wierzbowski@gmail.com"
               >rob.wierzbowski@gmail.com</a
             >. Looking forward to hearing from you 👋🏼.
           </p>
