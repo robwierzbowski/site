@@ -174,7 +174,8 @@
       :root {
         /* Colors */
         --highlighter: hsl(296deg 96% 58% / 50%);
-        --off-black: hsl(0, 0%, 14%);
+        --off-black: hsl(0 0% 14%);
+        --seafoam: hsl(149deg 86% 81%);
         --yellow: yellow;
 
         /* Font families */
@@ -329,7 +330,7 @@
 
       .callout:has(a:hover),
       .callout:has(a:focus) {
-        background-color: #a4f8cc;
+        background-color: var(--seafoam);
       }
 
       .callout a:hover,
