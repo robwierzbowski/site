@@ -318,15 +318,23 @@
         background-color: var(--yellow);
       }
 
+      /* TODO: untangle the specificity and order-dependence of links on the
+      page by adding a class to .content and .callout links. Remember BEM?!? */
+      /* TODO: Wrap with @supports, and write a fallback for Firefox */
       .callout a {
         margin: -0.15rem -0.2rem -0.25rem -0.15rem;
         padding: 0.15rem 0.2rem 0.25rem 0.15rem;
         font-size: unset;
       }
 
+      .callout:has(a:hover),
+      .callout:has(a:focus) {
+        background-color: #a4f8cc;
+      }
+
       .callout a:hover,
       .callout a:focus {
-        background-color: #a4f8cc;
+        background-color: unset;
       }
 
       .svg-defs {
