@@ -242,9 +242,9 @@
 
       /*
         .content is a container for markdown-like text. In a larger system I'd
-        use classes or components to add styles to each element, but on this
-        tiny page I'm use descendent element selectors to make it easy to write
-        HTML content by hand.
+        use module classes or components to add similar styles to each element,
+        but on this tiny section I'll use descendent element selectors when it
+        makes it easier to write HTML content by hand.
       */
       .content {
         margin-bottom: 2.25rem;
@@ -254,13 +254,24 @@
         margin-bottom: 1rem;
       }
 
-      .content a,
-      .footer-link {
+      .content-callout {
+        margin: 0 -1rem 1rem;
+        padding: 1rem;
         font-family: var(--inter);
         font-feature-settings: var(--inter-feature-settings);
-        /* Know when to use rem, know when to use em 💅🏼 */
-        font-size: 0.94em;
-        font-weight: 625;
+        font-weight: 650;
+        background-color: var(--yellow);
+      }
+
+      /* TODO: Wrap with @supports, and write a fallback for Firefox */
+      .content-callout:has(.callout-link:hover),
+      .content-callout:has(.callout-link:focus) {
+        background-color: var(--seafoam);
+      }
+
+      .callout-link,
+      .content-link,
+      .footer-link {
         /*
           The latest and greatest! Previously I was using a background gradient
           and text shadow to create an "underline" that broke around descenders,
@@ -273,7 +284,21 @@
         text-underline-offset: 2px;
       }
 
-      .content a {
+      .content-link,
+      .footer-link {
+        /* Know when to use rem, know when to use em 💅🏼 */
+        font-family: var(--inter);
+        font-feature-settings: var(--inter-feature-settings);
+        font-size: 0.94em;
+        font-weight: 625;
+      }
+
+      .callout-link {
+        margin: -0.15rem -0.2rem -0.25rem -0.15rem;
+        padding: 0.15rem 0.2rem 0.25rem 0.15rem;
+      }
+
+      .content-link {
         margin: -0.15rem -0.3rem -0.2rem;
         padding: 0.15rem 0.3rem 0.2rem;
       }
@@ -284,9 +309,9 @@
         padding: 0.15rem 0.5rem 0.2rem;
       }
 
-      .content a:hover,
+      .content-link:hover,
       .footer-link:hover,
-      .content a:focus,
+      .content-link:focus,
       .footer-link:focus {
         background-color: var(--yellow);
         text-decoration: none;
@@ -310,34 +335,6 @@
         }
       }
 
-      .callout {
-        margin: 0 -1rem 1rem;
-        padding: 1rem;
-        font-family: var(--inter);
-        font-feature-settings: var(--inter-feature-settings);
-        font-weight: 650;
-        background-color: var(--yellow);
-      }
-
-      /* TODO: untangle the specificity and order-dependence of links on the
-      page by adding a class to .content and .callout links. Remember BEM?!? */
-      /* TODO: Wrap with @supports, and write a fallback for Firefox */
-      .callout a {
-        margin: -0.15rem -0.2rem -0.25rem -0.15rem;
-        padding: 0.15rem 0.2rem 0.25rem 0.15rem;
-        font-size: unset;
-      }
-
-      .callout:has(a:hover),
-      .callout:has(a:focus) {
-        background-color: var(--seafoam);
-      }
-
-      .callout a:hover,
-      .callout a:focus {
-        background-color: unset;
-      }
-
       .svg-defs {
         display: none;
       }
@@ -355,12 +352,12 @@
           engineering leadership.
         </p>
 
-        <p class="callout">
+        <p class="content-callout">
           <strong
             >I'm currently seeking a Principal or Staff position at a company
             that's maturing their frontend platform.</strong
           >
-          Read more <a href="/hire-me">here</a>.
+          Read more <a class="callout-link" href="/hire-me">here</a>.
         </p>
 
         <p>
@@ -380,8 +377,11 @@
 
         <p>
           You can learn more about my experience on
-          <a href="https://www.linkedin.com/in/robertwierzbowski/">Linkedin</a>.
-          IRL, you'll find me loving the sun, coffee, and hospitality in
+          <a
+            class="content-link"
+            href="https://www.linkedin.com/in/robertwierzbowski/"
+            >Linkedin</a
+          >. IRL, you'll find me loving the sun, coffee, and hospitality in
           beautiful Austin, TX.
         </p>
       </article>
