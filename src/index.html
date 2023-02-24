@@ -241,7 +241,7 @@
       }
 
       /*
-        .content is a container for markdown-like text. In a larger system I'd
+        `.content` is a container for markdown-like text. In a larger system I'd
         use module classes or components to add similar styles to each element,
         but on this tiny section I'll use descendent element selectors when it
         makes it easier to write HTML content by hand.
@@ -263,17 +263,29 @@
         background-color: var(--yellow);
       }
 
-      /* TODO: Wrap with @supports, and write a fallback for Firefox */
       .content-callout:has(.callout-link:hover),
       .content-callout:has(.callout-link:focus) {
         background-color: var(--seafoam);
+      }
+
+      /*
+        Since all modern browsers support `@supports`, we can now use `not`
+        fallbacks, and write our ideal code at the root level! What a pleasure.
+      */
+      @supports not (has(*)) {
+        .callout-link:hover,
+        .callout-link:focus {
+          text-decoration: underline;
+          text-decoration-thickness: 0.2rem;
+          text-decoration-color: var(--seafoam);
+        }
       }
 
       .callout-link,
       .content-link,
       .footer-link {
         /*
-          The latest and greatest! Previously I was using a background gradient
+          The latest and greatest 🖤. Previously I was using a background gradient
           and text shadow to create an "underline" that broke around descenders,
           but now we can do the same with skip-ink and text-decoration rules.
         */
