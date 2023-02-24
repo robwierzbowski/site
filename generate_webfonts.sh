@@ -15,6 +15,6 @@ echo '\n🔠 Inter Variable micro'
 # Create temp directory for intermediate steps
 TEMP_DIR=$(mktemp -d)
 # Remove all OpenType features except for kerning
-pyftsubset font-src/Inter-Variable_slnt,wght.ttf --unicodes=\* --layout-features=cv05,cv10,kern --output-file=${TEMP_DIR}/Inter-Variable_slnt,wght-micro.ttf
+pyftsubset font-src/Inter-Variable_slnt,wght.ttf --unicodes=\* --layout-features=cv05,cv10,kern,zero --output-file=${TEMP_DIR}/Inter-Variable_slnt,wght-micro.ttf
 # Agressively subset, leaving only latin letters, numbers, and common punctuation
 npx glyphhanger --subset=${TEMP_DIR}/Inter-Variable_slnt,wght-micro.ttf --formats=woff2 --whitelist=U+0000-00A0 --output=src
