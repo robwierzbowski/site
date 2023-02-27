@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <!--
-  You might notice this file isn't minimized. In fact, it's not processed in any
+You might notice this file isn't minimized. In fact, it's not processed in any
   way. I started writing code for the web in the late 90s, when viewing source
-  was often the only way we had to dive into the minds of people who built
-  something that made us ask "how!?". It was an exciting time of discovery,
-  spelunking, and possibilities. In the years since, compilers and SPAs have
-  taken the web amazing places, but on this site and with my time I'd like to
-  recapture some of that old wonder. No build process, no dependencies, just
-  code and comments typed into an HTML file for anyone that cares to look.
+  was often the only way to dive into the minds of people who built something
+  that made us ask "how!?". It was an exciting time of discovery, spelunking,
+  and possibilities. In the years since, compilers and SPAs have taken the web
+  amazing places... but on this site and with my time I'd like to recapture some
+  of that old wonder. No build process, no dependencies, just code and comments
+  typed into an HTML file for anyone that cares to look.
 -->
 <html lang="en">
   <head>
@@ -78,12 +78,12 @@
       }
 
       /*
-        The full Inter font will attempt to download on page load, but it will
-        only display if it loads in under 100ms. It will then be available on
-        all subsequent page loads. If the connection is fast, the micro font is
-        never shown and I waste 20kb over the network, but if the connection is
-        slow I can be sure a reduced version of Inter will be shown quickly,
-        without any FOUT.
+        The full Inter font will attempt to download on first page load, but
+        will only display if it finishes in under 100ms. Either way, it will be
+        available on all subsequent page loads. If the connection is fast the
+        micro font is never shown and I waste 20kb over the network, but if the
+        connection is slow I can be sure a design-appropriate reduced version of
+        Inter will be shown quickly, without any FOUT.
       */
       @font-face {
         font-display: optional;
