@@ -173,7 +173,7 @@
 
       :root {
         /* Colors */
-        --highlighter: hsl(296deg 96% 58% / 50%);
+        /* --highlighter: hsl(296deg 96% 58% / 50%); */
         --off-black: hsl(0 0% 14%);
         --seafoam: hsl(149deg 86% 81%);
         --yellow: yellow;
@@ -200,7 +200,7 @@
       ::selection {
         color: black;
         text-shadow: none;
-        background-color: var(--highlighter);
+        background-color: var(--yellow);
       }
 
       .main {
@@ -260,12 +260,12 @@
         font-family: var(--inter);
         font-feature-settings: var(--inter-feature-settings);
         font-weight: 650;
-        background-color: var(--yellow);
+        background-color: var(--seafoam);
       }
 
       .content-callout:has(.callout-link:hover),
       .content-callout:has(.callout-link:focus) {
-        background-color: var(--seafoam);
+        background-color: var(--yellow);
       }
 
       /*
@@ -277,7 +277,7 @@
         .callout-link:focus {
           text-decoration: underline;
           text-decoration-thickness: 0.2rem;
-          text-decoration-color: var(--seafoam);
+          text-decoration-color: var(--yellow);
         }
       }
 
@@ -325,7 +325,7 @@
       .footer-link:hover,
       .content-link:focus,
       .footer-link:focus {
-        background-color: var(--yellow);
+        background-color: var(--seafoam);
         text-decoration: none;
       }
 
