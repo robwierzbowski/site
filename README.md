@@ -1,11 +1,16 @@
 # Site
 
-A no compile, no transform microsite. Happily trading dependencies and pipelines for some extra typing. Modern browsers make it _fun_ to write code like it's 200X.
+A no transpile, no build microsite. Happily trading dependencies and
+pipelines for some extra typing. Modern browsers make it _fun_ to write code
+like it's 200X.
 
 ## Local development
 
 ```shell
-npx http-server src -o
+# Install a tiny tool for HTML partials
+npm install
+
+npm run dev
 ```
 
 ### Optimize and subset fonts
