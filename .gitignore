@@ -1,3 +1,6 @@
+# Built files
+src/dist
+
 # Logs
 logs
 *.log

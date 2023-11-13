@@ -1,10 +1,12 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+<sergey-slot />
+
 <!--
-  TODO: Replace placeholder favicon with something more personal, use svg
-  and png
--->
+      TODO: Replace placeholder favicon with something more personal, use svg
+      and png
+    -->
 <link rel="icon" href="/favicon-64.png" />
 
 <link
@@ -188,6 +190,11 @@
     font-size: 1.125rem;
   }
 
+  /* For less content, reduce reading line length */
+  .main.home {
+    max-width: 39rem;
+  }
+
   @media (min-width: 560px) {
     .main {
       padding: 1rem 1.5rem;
@@ -199,21 +206,24 @@
     margin: 3rem 0 3.75rem;
     font-family: var(--inter);
     font-feature-settings: var(--inter-feature-settings);
+    font-size: 2rem;
     font-weight: 750;
     line-height: 1.15;
-
-    /* Content-specific */
-    font-size: 2rem;
   }
 
   @media (min-width: 560px) {
     .title {
       margin: 2rem 0 1.5rem;
+      font-size: 1.6rem;
       font-weight: 650;
       line-height: 1.2;
+    }
+  }
 
-      /* Content-specific */
-      font-size: 1.6rem;
+  /* Make title larger on the home page for more impact */
+  @media (min-width: 560px) {
+    .title.home {
+      font-size: 1.75rem;
     }
   }
 

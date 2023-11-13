@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "start": "sergey --root=./src/ --output=dist",
+    "dev": "npm run start -- --watch"
+  },
+  "devDependencies": {
+    "sergey": "^0.0.13"
+  }
+}

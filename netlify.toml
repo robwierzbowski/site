@@ -1,5 +1,7 @@
 [build]
-  publish = "src/"
+  base = '.'
+  command = 'npm run start'
+  publish = "src/dist"
 
 # Turn off asset processing to support preloading fonts with a link tag. Netlify
 # doesn't rewrite link tags to match their hashed asset name, or allow
