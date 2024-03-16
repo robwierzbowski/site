@@ -249,36 +249,18 @@
     margin-bottom: 1rem;
   }
 
-  .content-callout {
-    margin: 0 -1rem 1rem;
-    padding: 1rem;
-    font-family: var(--inter);
-    font-feature-settings: var(--inter-feature-settings);
-    font-weight: 650;
-    background-color: var(--seafoam);
-  }
-
-  .content-callout:has(.callout-link:hover),
-  .content-callout:has(.callout-link:focus) {
-    background-color: var(--yellow);
-  }
-
-  /*
-    Since all modern browsers support `@supports`, we can now use `not`
-    fallbacks, and write our ideal code at the root level! What a pleasure.
-  */
-  @supports not (has(*)) {
-    .callout-link:hover,
-    .callout-link:focus {
-      text-decoration: underline;
-      text-decoration-thickness: 0.2rem;
-      text-decoration-color: var(--yellow);
-    }
-  }
-
-  .callout-link,
   .content-link,
   .footer-link {
+    margin: -0.15rem -0.15rem -0.2rem;
+    padding: 0.15rem 0.25rem 0.2rem;
+    border-radius: 0.25rem;
+
+    /* Know when to use rem, know when to use em 💅🏼 */
+    font-family: var(--inter);
+    font-feature-settings: var(--inter-feature-settings);
+    font-size: 0.94em;
+    font-weight: 625;
+
     /*
       The latest and greatest 🖤. Previously I was using a background gradient
       and text shadow to create an "underline" that broke around descenders,
@@ -291,36 +273,15 @@
     text-underline-offset: 2px;
   }
 
-  .content-link,
-  .footer-link {
-    /* Know when to use rem, know when to use em 💅🏼 */
-    font-family: var(--inter);
-    font-feature-settings: var(--inter-feature-settings);
-    font-size: 0.94em;
-    font-weight: 625;
-  }
-
-  .callout-link {
-    margin: -0.15rem -0.2rem -0.25rem -0.15rem;
-    padding: 0.15rem 0.2rem 0.25rem 0.15rem;
-  }
-
-  .content-link {
-    margin: -0.15rem -0.3rem -0.2rem;
-    padding: 0.15rem 0.3rem 0.2rem;
-  }
-
   .footer-link {
     display: table;
-    margin: -0.15rem -0.5rem -0.2rem;
-    padding: 0.15rem 0.5rem 0.2rem;
   }
 
   .content-link:hover,
   .footer-link:hover,
   .content-link:focus,
   .footer-link:focus {
-    background-color: var(--yellow);
+    background-color: var(--seafoam);
     text-decoration: none;
   }
 
